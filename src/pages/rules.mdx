@@ -1,0 +1,14 @@
+---
+title: Explorador de Regras
+description: Explore todas as regras de validação da sds-lib — filtre por grupo, tipo de evento e busca.
+---
+
+import RulesExplorer from '@site/src/components/RulesExplorer';
+
+# Explorador de Regras
+
+Navegue e filtre todas as regras de negócio aplicadas pela **sds-lib**. Cada regra mapeia um evento de manejo animal às suas restrições de validação, código de erro, espécies afetadas e estágios reprodutivos.
+
+> **Como interpretar uma regra:** Quando um evento (ex: `animal_weaning_deletion`) é acionado, a sds-lib valida os campos listados. Se a restrição não for atendida, o código de erro correspondente é retornado.
+
+<RulesExplorer />

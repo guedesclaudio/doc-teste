@@ -1,0 +1,41 @@
+[
+  {
+    "event": ["animal_loss_off_register"],
+    "validationFields": ["date", "cause"],
+    "error": "AN015",
+    "species": ["sow", "gilt"],
+    "stages": ["gestation", "lactating"],
+    "description": "Loss date cannot be in the future."
+  },
+  {
+    "event": ["animal_loss_off_register"],
+    "validationFields": ["date"],
+    "error": "AN016",
+    "species": ["sow", "gilt", "boar"],
+    "stages": ["gestation", "lactating", "dry"],
+    "description": "Loss date must be greater than or equal to the last event date.",
+    "conditions": [
+      "quando o lote possuir um evento de output registrado anteriormente",
+      "exceto para animais comprados gestantes com data de entrada retroativa"
+    ]
+  },
+  {
+    "event": ["animal_loss_off_update"],
+    "validationFields": ["cause"],
+    "error": "AN017",
+    "species": ["sow", "gilt", "boar"],
+    "stages": ["gestation", "lactating", "dry"],
+    "description": "Cannot update loss record if animal has been moved after the loss date."
+  },
+  {
+    "event": ["animal_loss_off_deletion"],
+    "validationFields": ["date"],
+    "error": "AN018",
+    "species": ["sow", "gilt"],
+    "stages": ["gestation"],
+    "description": "Cannot delete loss record if gestating sow has farrowing events after this date.",
+    "conditions": [
+      "quando o lote possuir um evento de output vinculado à baixa"
+    ]
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "event": ["animal_weaning_deletion"],
+    "validationFields": ["date"],
+    "error": "AN009",
+    "species": ["sow"],
+    "stages": ["lactating"],
+    "description": "Cannot delete weaning if subsequent events exist.",
+    "conditions": [
+      "quando o lote possuir um evento de output após o desmame",
+      "quando existir registro de cobertura posterior ao desmame"
+    ]
+  },
+  {
+    "event": ["animal_weaning_register"],
+    "validationFields": ["date", "piglets_count"],
+    "error": "AN010",
+    "species": ["sow"],
+    "stages": ["lactating"],
+    "description": "Weaning date must be after the farrowing date."
+  },
+  {
+    "event": ["animal_weaning_register"],
+    "validationFields": ["piglets_count"],
+    "error": "AN011",
+    "species": ["sow"],
+    "stages": ["lactating"],
+    "description": "Piglets count at weaning cannot exceed piglets count at farrowing.",
+    "conditions": [
+      "exceto para animais comprados gestantes já com leitões registrados externamente"
+    ]
+  },
+  {
+    "event": ["animal_weaning_update"],
+    "validationFields": ["date"],
+    "error": "AN012",
+    "species": ["sow"],
+    "stages": ["lactating"],
+    "description": "Cannot update weaning date if subsequent reproductive events exist."
+  }
+]

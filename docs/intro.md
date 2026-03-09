@@ -2,46 +2,48 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Introdução
 
-Let's discover **Docusaurus in less than 5 minutes**.
+**sds-lib** é o motor de validação para eventos de gestão de animais desenvolvido pela equipe **Agriness**.
 
-## Getting Started
+Ela fornece um sistema de regras centralizado e modular que garante a integridade dos dados em todos os eventos do ciclo de vida animal — do parto e desmame até transferências e registros de baixa.
 
-Get started by **creating a new site**.
+## O que a sds-lib faz?
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+Quando um usuário realiza uma ação (ex: registrar um desmame, atualizar uma transferência ou excluir um registro de baixa), a **sds-lib** valida o evento contra um conjunto de regras predefinido. Se uma violação for detectada, um código de erro estruturado é retornado.
 
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
+```json
+{
+  "error": "AN009",
+  "message": "Não é possível excluir o desmame se existirem eventos posteriores.",
+  "field": "date"
+}
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## Conceitos principais
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+| Conceito | Descrição |
+|---|---|
+| **Evento** | Uma ação sobre o registro de um animal (ex: `animal_weaning_register`) |
+| **Regra** | Uma restrição que deve ser satisfeita para que o evento seja válido |
+| **Código de Erro** | Identificador único de uma violação de regra (ex: `AN009`) |
+| **Grupo** | Categoria lógica de regras (ex: `animal_weaning`) |
+| **Espécie** | A espécie animal à qual a regra se aplica (ex: `sow`, `gilt`) |
+| **Estágio** | O estágio reprodutivo ao qual a regra se aplica (ex: `lactating`, `gestation`) |
 
-## Start your site
+## Convenção de nomenclatura dos eventos
 
-Run the development server:
+Todos os eventos seguem o padrão: `{grupo}_{ação}`
 
-```bash
-cd my-website
-npm run start
-```
+| Sufixo de ação | Significado |
+|---|---|
+| `_register` | Criação de um novo registro |
+| `_update` | Modificação de um registro existente |
+| `_deletion` | Remoção de um registro |
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+## Próximos passos
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+- [Instalação](./installation) — Adicione a sds-lib ao seu projeto
+- [Explorador de Regras](/rules) — Navegue por todas as regras de validação
+- [FAQ](./faq) — Perguntas frequentes e motivações
+- [Releases](./releases) — Histórico de versões
