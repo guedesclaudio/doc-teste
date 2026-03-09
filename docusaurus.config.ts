@@ -22,11 +22,11 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://agriness.github.io',
-  baseUrl: '/sds-lib/',
+  url: 'https://guedesclaudio.github.io',
+  baseUrl: '/doc-teste/',
 
-  organizationName: 'agriness',
-  projectName: 'sds-lib',
+  organizationName: 'guedesclaudio',
+  projectName: 'doc-teste',
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
