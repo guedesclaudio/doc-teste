@@ -1,41 +1,144 @@
 [
   {
-    "event": ["animal_loss_off_register"],
-    "validationFields": ["date", "cause"],
-    "error": "AN015",
-    "species": ["sow", "gilt"],
-    "stages": ["gestation", "lactating"],
-    "description": "Loss date cannot be in the future."
+    "event": ["animal_loss_off_register", "animal_loss_off_update"],
+    "validationFields": ["uuid"],
+    "error": "ALO001",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Animal is not defined."
+  },
+  {
+    "event": ["animal_loss_off_register", "animal_loss_off_update"],
+    "validationFields": ["date"],
+    "error": "ALO002",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Loss date must be less than or equal to today.",
+    "conditions": [
+      "aplicado somente quando date estiver definido"
+    ]
   },
   {
     "event": ["animal_loss_off_register"],
-    "validationFields": ["date"],
-    "error": "AN016",
-    "species": ["sow", "gilt", "boar"],
-    "stages": ["gestation", "lactating", "dry"],
-    "description": "Loss date must be greater than or equal to the last event date.",
+    "validationFields": ["quantity"],
+    "error": "ALO003",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "The animal quantity must not exceed the sow's available piglet balance.",
     "conditions": [
-      "quando o lote possuir um evento de output registrado anteriormente",
-      "exceto para animais comprados gestantes com data de entrada retroativa"
+      "aplicado somente quando quantity estiver definido"
     ]
   },
   {
     "event": ["animal_loss_off_update"],
-    "validationFields": ["cause"],
-    "error": "AN017",
-    "species": ["sow", "gilt", "boar"],
-    "stages": ["gestation", "lactating", "dry"],
-    "description": "Cannot update loss record if animal has been moved after the loss date."
+    "validationFields": ["quantity"],
+    "error": "ALO004",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "To update animal quantity, this event must be the last registered event.",
+    "conditions": [
+      "aplicado somente quando quantity estiver definido"
+    ]
+  },
+  {
+    "event": ["animal_loss_off_update"],
+    "validationFields": ["quantity"],
+    "error": "ALO005",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "The updated animal quantity must not exceed the sow's previous piglet balance.",
+    "conditions": [
+      "aplicado somente quando quantity estiver definido",
+      "o saldo anterior é calculado somando total_piglets atual com a quantity do próprio evento"
+    ]
+  },
+  {
+    "event": ["animal_loss_off_register", "animal_loss_off_update"],
+    "validationFields": ["date"],
+    "error": "ALO006",
+    "species": ["sow"],
+    "stages": ["lactating"],
+    "description": "For non-nurse-mother sows, the piglet loss date must be on or after the last parturition date.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente para porcas (sow) em estágio lactating que NÃO são nurse_mother",
+      "retorna falso se não houver data de parto registrada"
+    ]
+  },
+  {
+    "event": ["animal_loss_off_register", "animal_loss_off_update"],
+    "validationFields": ["date"],
+    "error": "ALO007",
+    "species": ["sow"],
+    "stages": ["lactating"],
+    "description": "For non-nurse-mother sows, piglet age must be within the configured farm thresholds.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente para porcas (sow) em estágio lactating que NÃO são nurse_mother",
+      "calculado como diferença em dias entre a última data de parto e a data do evento",
+      "validado contra os threshold_references configurados na granja (event_set: animal_loss_off, type: date, threshold_rule: offspring_age)"
+    ]
+  },
+  {
+    "event": ["animal_loss_off_register", "animal_loss_off_update"],
+    "validationFields": ["date"],
+    "error": "ALO008",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "For nurse-mother sows, the piglet loss date must be on or after the nurse sow registration date.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente para porcas (sow) em estágio lactating ou pregnant_and_lactating que SÃO nurse_mother",
+      "retorna falso se não houver data de nurse_mother registrada"
+    ]
+  },
+  {
+    "event": ["animal_loss_off_register", "animal_loss_off_update"],
+    "validationFields": ["date"],
+    "error": "ALO009",
+    "species": ["sow"],
+    "stages": ["lactating"],
+    "description": "For nurse-mother sows, the piglet loss date must be on or after the sow's last partial weaning date.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente para porcas (sow) em estágio lactating que SÃO nurse_mother",
+      "ignorado se não houver desmame parcial registrado"
+    ]
+  },
+  {
+    "event": ["animal_loss_off_register", "animal_loss_off_update"],
+    "validationFields": ["date"],
+    "error": "ALO010",
+    "species": ["sow"],
+    "stages": ["lactating"],
+    "description": "For non-nurse-mother sows, the piglet loss date must be on or after the sow's last partial weaning date.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente para porcas (sow) em estágio lactating que NÃO são nurse_mother",
+      "ignorado se não houver desmame parcial registrado"
+    ]
+  },
+  {
+    "event": ["animal_loss_off_register", "animal_loss_off_update"],
+    "validationFields": ["date"],
+    "error": "ALO011",
+    "species": ["sow"],
+    "stages": ["lactating"],
+    "description": "For nurse-mother sows, piglet age calculated from the average birth date must be within farm-configured limits.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente para porcas (sow) em estágio lactating que SÃO nurse_mother",
+      "calculado como diferença em dias entre average_birth_date do animal e a data do evento",
+      "retorna falso se average_birth_date não estiver disponível",
+      "validado contra os threshold_references configurados na granja (event_set: animal_loss_off, threshold_rule: offspring_age)"
+    ]
   },
   {
     "event": ["animal_loss_off_deletion"],
     "validationFields": ["date"],
-    "error": "AN018",
-    "species": ["sow", "gilt"],
-    "stages": ["gestation"],
-    "description": "Cannot delete loss record if gestating sow has farrowing events after this date.",
-    "conditions": [
-      "quando o lote possuir um evento de output vinculado à baixa"
-    ]
+    "error": "ALO012",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Cannot delete animal offspring loss if subsequent events exist."
   }
 ]

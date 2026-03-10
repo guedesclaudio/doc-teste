@@ -1,0 +1,95 @@
+[
+  {
+    "event": ["animal_loss_rpr_register", "animal_loss_rpr_update"],
+    "validationFields": ["uuid"],
+    "error": "ALR001",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Animal is not defined."
+  },
+  {
+    "event": ["animal_loss_rpr_register", "animal_loss_rpr_update"],
+    "validationFields": ["date"],
+    "error": "ALR002",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Loss date must be less than or equal to today.",
+    "conditions": [
+      "aplicado somente quando date estiver definido"
+    ]
+  },
+  {
+    "event": ["animal_loss_rpr_register", "animal_loss_rpr_update"],
+    "validationFields": ["date"],
+    "error": "ALR003",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Loss date must be after or equal to the animal's input date.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "retorna falso se input_date não estiver disponível no animal"
+    ]
+  },
+  {
+    "event": ["animal_loss_rpr_register", "animal_loss_rpr_update"],
+    "validationFields": ["date"],
+    "error": "ALR004",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Loss date must be after or equal to the last animal event.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "se o último evento do animal for o próprio loss_rpr, compara com o penúltimo evento ou a data de entrada"
+    ]
+  },
+  {
+    "event": ["animal_loss_rpr_register", "animal_loss_rpr_update"],
+    "validationFields": ["date"],
+    "error": "ALR005",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Must be within the farm-configured minimum and maximum interval between the last mating and the abortion event.",
+    "conditions": [
+      "aplicado somente quando rpr_loss_type = 'abortion' e date estiver definido",
+      "para porcas OG gestantes sem cobertura registrada, utiliza mating_date do animal",
+      "retorna falso se não houver data de cobertura disponível",
+      "validado contra os threshold_references configurados na granja (event_set: animal_loss_rpr, type: date, threshold_rule: n_days_btwn_mating_abortion)"
+    ]
+  },
+  {
+    "event": ["animal_loss_rpr_register", "animal_loss_rpr_update"],
+    "validationFields": ["date"],
+    "error": "ALR006",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Must be within the farm-configured minimum and maximum interval between the last mating and the heat repetition event.",
+    "conditions": [
+      "aplicado somente quando rpr_loss_type = 'repeat_breeding' e date estiver definido",
+      "para porcas OG gestantes sem cobertura registrada, utiliza mating_date do animal",
+      "retorna falso se não houver data de cobertura disponível",
+      "validado contra os threshold_references configurados na granja (event_set: animal_loss_rpr, type: date, threshold_rule: n_days_btwn_mating_repeat_breeding)"
+    ]
+  },
+  {
+    "event": ["animal_loss_rpr_register", "animal_loss_rpr_update"],
+    "validationFields": ["date"],
+    "error": "ALR007",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Must be within the farm-configured minimum and maximum interval between the last mating and the false pregnancy event.",
+    "conditions": [
+      "aplicado somente quando rpr_loss_type = 'false_pregnancy' e date estiver definido",
+      "para porcas OG gestantes sem cobertura registrada, utiliza mating_date do animal",
+      "retorna falso se não houver data de cobertura disponível",
+      "validado contra os threshold_references configurados na granja (event_set: animal_loss_rpr, type: date, threshold_rule: n_days_btwn_mating_false_pregnancy)"
+    ]
+  },
+  {
+    "event": ["animal_loss_rpr_deletion"],
+    "validationFields": ["date"],
+    "error": "ALR008",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Cannot delete this loss event if there are subsequent events for this animal."
+  }
+]
