@@ -4,6 +4,7 @@ import type { RuleGroup } from '../../components/RulesExplorer/types';
 import animalWeaningRules from './animal_weaning.json';
 import animalLossOffRules from './animal_loss_off.json';
 import animalTransferRules from './animal_transfer.json';
+import animalParturitionRules from './animal_parturition.json';
 
 export const ruleGroups: RuleGroup[] = [
   {
@@ -20,6 +21,11 @@ export const ruleGroups: RuleGroup[] = [
     group: 'animal_transfer',
     label: 'Animal Transfer',
     rules: animalTransferRules,
+  },
+  {
+    group: 'animal_parturition',
+    label: 'Animal Parturition',
+    rules: animalParturitionRules,
   },
 ];
 

@@ -1,0 +1,181 @@
+[
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["uuid"],
+    "error": "APA001",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Animal is not defined."
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["start_date"],
+    "error": "APA002",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Start date must be less than or equal to today.",
+    "conditions": [
+      "aplicado somente quando start_date estiver definido"
+    ]
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["start_date"],
+    "error": "APA003",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Start date must be after or equal to the last animal event.",
+    "conditions": [
+      "aplicado somente quando start_date estiver definido",
+      "se o último evento do animal for o próprio parto, compara com o penúltimo evento ou a data de entrada"
+    ]
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["start_date"],
+    "error": "APA004",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Interval between the last mating date and farrowing start must be within farm-configured gestation limits.",
+    "conditions": [
+      "aplicado somente quando start_date estiver definido",
+      "para porcas OG gestantes sem cobertura registrada, utiliza a mating_date do animal",
+      "validado contra os threshold_references configurados na granja (event_set: animal_parturition, type: start_date)"
+    ]
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["live_births"],
+    "error": "APA005",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "If greater than 0, the value must be within the farm-configured live births range.",
+    "conditions": [
+      "aplicado somente quando live_births > 0",
+      "validado contra os threshold_references configurados na granja (event_set: animal_parturition, type: live_births)"
+    ]
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["stillbirths"],
+    "error": "APA006",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "If greater than 0, the value must be within the farm-configured still births range.",
+    "conditions": [
+      "aplicado somente quando stillbirths > 0",
+      "validado contra os threshold_references configurados na granja (event_set: animal_parturition, type: stillbirths)"
+    ]
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["mummified_fetuses"],
+    "error": "APA007",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "If greater than 0, the value must be within the farm-configured mummified fetuses range.",
+    "conditions": [
+      "aplicado somente quando mummified_fetuses > 0",
+      "validado contra os threshold_references configurados na granja (event_set: animal_parturition, type: mummified_fetuses)"
+    ]
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["live_births", "stillbirths", "mummified_fetuses"],
+    "error": "APA008",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Total born (live_births + stillbirths + mummified_fetuses) must be greater than 0.",
+    "conditions": [
+      "aplicado somente quando ao menos um dos campos de nascimento estiver definido"
+    ]
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["live_births", "stillbirths", "mummified_fetuses"],
+    "error": "APA009",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "The sum of live births, stillbirths, and mummified fetuses must be within the farm-configured total born range.",
+    "conditions": [
+      "aplicado somente quando ao menos um dos campos de nascimento estiver definido",
+      "validado contra os threshold_references configurados na granja (event_set: animal_parturition, type: total_born)"
+    ]
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["live_births", "female_offsprings", "male_offsprings"],
+    "error": "APA010",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "The sum of female and male offsprings must not exceed the total number of live births.",
+    "conditions": [
+      "aplicado somente quando female_offsprings ou male_offsprings estiverem definidos"
+    ]
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["live_births", "average_off_weight", "total_off_weight"],
+    "error": "APA011",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Total and average weights must be greater than 0 if live births > 0.",
+    "conditions": [
+      "aplicado somente quando live_births > 0 e ao menos um campo de peso estiver definido"
+    ]
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["live_births", "average_off_weight", "total_off_weight"],
+    "error": "APA012",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Total and average weights must be 0 or null if live births = 0.",
+    "conditions": [
+      "aplicado somente quando live_births = 0 e ao menos um campo de peso estiver definido"
+    ]
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["live_births", "average_off_weight"],
+    "error": "APA013",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Average piglet weight must be within the farm-configured range when live births > 0.",
+    "conditions": [
+      "aplicado somente quando live_births > 0 e average_off_weight estiver definido",
+      "validado contra os threshold_references configurados na granja (event_set: animal_parturition, type: average_off_weight)"
+    ]
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["live_births", "low_viability"],
+    "error": "APA014",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Low viability count cannot exceed the number of live births.",
+    "conditions": [
+      "aplicado somente quando low_viability estiver definido"
+    ]
+  },
+  {
+    "event": ["animal_parturition_register", "animal_parturition_update"],
+    "validationFields": ["weight"],
+    "error": "APA015",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Sow weight must be within the configured farm thresholds.",
+    "conditions": [
+      "aplicado somente quando weight estiver definido",
+      "validado contra os threshold_references configurados na granja (event_set: animal_parturition, type: weight)"
+    ]
+  },
+  {
+    "event": ["animal_parturition_deletion"],
+    "validationFields": ["date"],
+    "error": "APA016",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Cannot delete this event if there are subsequent events for this animal."
+  }
+]
