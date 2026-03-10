@@ -16,7 +16,7 @@ async function tailwindPlugin() {
 const config: Config = {
   title: 'SDS Docs',
   tagline: 'Documentação central da plataforma SDS — Agriness',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo.svg',
 
   future: {
     v4: true,

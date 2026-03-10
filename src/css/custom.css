@@ -21,7 +21,9 @@
   --ifm-color-primary-lightest:#78a0ef;
 
   --ifm-card-background-color:   #ffffff;
-  --ifm-navbar-background-color: #ffffff;
+  --ifm-navbar-background-color: #1a3a7a;
+  --ifm-navbar-link-color:       #c8d8f8;
+  --ifm-navbar-link-hover-color: #ffffff;
   --ifm-footer-background-color: #1e2222;
 
   --ifm-font-family-base: 'Lato', ui-sans-serif, system-ui, sans-serif;
@@ -56,19 +58,43 @@
 
 /* ─── Navbar ──────────────────────────────────────────────────────────────── */
 .navbar {
-  border-bottom: 2px solid var(--pf-primary-light);
-  box-shadow: 0 1px 8px rgba(42, 67, 113, 0.1);
+  border-bottom: none;
+  box-shadow: 0 2px 12px rgba(26, 58, 122, 0.35);
 }
 
 [data-theme='dark'] .navbar {
-  border-bottom-color: rgba(42, 100, 232, 0.25);
+  --ifm-navbar-background-color: #111827;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
 .navbar__brand .navbar__title {
   font-weight: 900;
   font-size: 1.2rem;
-  color: var(--pf-primary);
+  color: #ffffff;
   letter-spacing: -0.02em;
+}
+
+.navbar__link {
+  color: #c8d8f8;
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+  color: #ffffff;
+}
+
+/* Dropdown toggle arrow */
+.navbar__link.dropdown__link {
+  color: inherit;
+}
+
+/* Search / right side items */
+.navbar__items--right .navbar__link {
+  color: #c8d8f8;
+}
+
+.navbar__items--right .navbar__link:hover {
+  color: #ffffff;
 }
 
 /* ─── Hero ────────────────────────────────────────────────────────────────── */

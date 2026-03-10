@@ -45,47 +45,33 @@ const STATUS_LABEL: Record<'stable' | 'wip', string> = {
 };
 
 const STATUS_COLOR: Record<'stable' | 'wip', string> = {
-  stable: '#1a8a3a',
-  wip: '#b06000',
+  stable: '#16a34a',
+  wip: '#b45309',
 };
 
 const STATUS_BG: Record<'stable' | 'wip', string> = {
-  stable: '#e6f4ea',
-  wip: '#fff4e0',
+  stable: '#dcfce7',
+  wip: '#fef3c7',
 };
 
 function SystemCard({ name, description, to, status }: (typeof SYSTEMS)[number]) {
   return (
-    <div className="col col--6" style={{ marginBottom: '1.5rem' }}>
-      <div
-        className="card padding--lg"
-        style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Heading as="h3" style={{ margin: 0, fontSize: '1.1rem', fontFamily: 'monospace' }}>
-            {name}
-          </Heading>
-          <span
-            style={{
-              fontSize: '0.7rem',
-              fontWeight: 600,
-              padding: '0.2rem 0.55rem',
-              borderRadius: '999px',
-              color: STATUS_COLOR[status],
-              background: STATUS_BG[status],
-              letterSpacing: '0.03em',
-            }}
-          >
-            {STATUS_LABEL[status]}
-          </span>
+    <div className={styles.cardWrapper}>
+      <Link to={to} className={styles.cardLink}>
+        <div className={styles.card}>
+          <div className={styles.cardHeader}>
+            <span className={styles.cardName}>{name}</span>
+            <span
+              className={styles.badge}
+              style={{ color: STATUS_COLOR[status], background: STATUS_BG[status] }}
+            >
+              {STATUS_LABEL[status]}
+            </span>
+          </div>
+          <p className={styles.cardDescription}>{description}</p>
+          <span className={styles.cardAction}>Ver documentação →</span>
         </div>
-        <p style={{ fontSize: '0.875rem', color: 'var(--ifm-color-emphasis-700)', margin: 0, flexGrow: 1 }}>
-          {description}
-        </p>
-        <Link className="button button--primary button--sm" to={to}>
-          Ver documentação →
-        </Link>
-      </div>
+      </Link>
     </div>
   );
 }
@@ -98,11 +84,11 @@ export default function Home(): ReactNode {
       description="Documentação central da plataforma SDS — Agriness"
     >
       <header className={styles.heroBanner}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <Heading as="h1" style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>
+        <div className="container">
+          <Heading as="h1" className={styles.heroTitle}>
             SDS Platform
           </Heading>
-          <p style={{ fontSize: '1.15rem', opacity: 0.85, maxWidth: '560px', margin: '0 auto 2rem' }}>
+          <p className={styles.heroSubtitle}>
             Documentação central da plataforma SDS.<br />
             Selecione um sistema para começar.
           </p>
@@ -110,9 +96,9 @@ export default function Home(): ReactNode {
       </header>
 
       <main>
-        <section style={{ padding: '3rem 0' }}>
+        <section className={styles.cardsSection}>
           <div className="container">
-            <div className="row">
+            <div className={styles.cardsGrid}>
               {SYSTEMS.map((s) => (
                 <SystemCard key={s.name} {...s} />
               ))}
