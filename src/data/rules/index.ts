@@ -6,6 +6,9 @@ import animalLossOffRules from './animal_loss_off.json';
 import animalTransferRules from './animal_transfer.json';
 import animalParturitionRules from './animal_parturition.json';
 import animalLossRprRules from './animal_loss_rpr.json';
+import animalMissedHeatRules from './animal_missed_heat.json';
+import animalNurseMotherRules from './animal_nurse_mother.json';
+import animalMatingRules from './animal_mating.json';
 
 export const ruleGroups: RuleGroup[] = [
   {
@@ -32,6 +35,21 @@ export const ruleGroups: RuleGroup[] = [
     group: 'animal_loss_rpr',
     label: 'Animal Loss RPR',
     rules: animalLossRprRules,
+  },
+  {
+    group: 'animal_missed_heat',
+    label: 'Animal Missed Heat',
+    rules: animalMissedHeatRules,
+  },
+  {
+    group: 'animal_nurse_mother',
+    label: 'Animal Nurse Mother',
+    rules: animalNurseMotherRules,
+  },
+  {
+    group: 'animal_mating',
+    label: 'Animal Mating',
+    rules: animalMatingRules,
   },
 ];
 

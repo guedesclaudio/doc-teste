@@ -1,0 +1,71 @@
+[
+  {
+    "event": ["animal_missed_heat_register", "animal_missed_heat_update"],
+    "validationFields": ["uuid"],
+    "error": "AMH001",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Animal is not defined."
+  },
+  {
+    "event": ["animal_missed_heat_register", "animal_missed_heat_update"],
+    "validationFields": ["date"],
+    "error": "AMH002",
+    "species": ["sow"],
+    "stages": ["empty"],
+    "description": "Missed heat date must be less than or equal to today.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente para porcas (sow) em estágio empty"
+    ]
+  },
+  {
+    "event": ["animal_missed_heat_register", "animal_missed_heat_update"],
+    "validationFields": ["date"],
+    "error": "AMH003",
+    "species": ["sow"],
+    "stages": ["empty", "lactating"],
+    "description": "Missed heat date must be after or equal to the last animal event.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente para porcas (sow) em estágio empty ou lactating",
+      "se o último evento do animal for o próprio missed_heat, compara com o penúltimo evento ou a data de entrada"
+    ]
+  },
+  {
+    "event": ["animal_missed_heat_register", "animal_missed_heat_update"],
+    "validationFields": ["date"],
+    "error": "AMH004",
+    "species": ["sow"],
+    "stages": ["empty"],
+    "description": "Empty period must be within the configured farm thresholds.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente para porcas (sow) em estágio empty",
+      "calculado como diferença em dias entre a data de mudança de estágio (animalData.date) e a data do evento",
+      "validado contra os threshold_references configurados na granja (event_set: animal_missed_heat, type: date, threshold_rule: n_days_btwn_empty_missed_heat)"
+    ]
+  },
+  {
+    "event": ["animal_missed_heat_register", "animal_missed_heat_update"],
+    "validationFields": ["date"],
+    "error": "AMH005",
+    "species": ["sow"],
+    "stages": ["lactating"],
+    "description": "Lactation period must be within the configured farm thresholds.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente para porcas (sow) em estágio lactating",
+      "calculado como diferença em dias entre a data de mudança de estágio (animalData.date) e a data do evento",
+      "validado contra os threshold_references configurados na granja (event_set: animal_missed_heat, type: date, threshold_rule: n_days_btwn_lactating_missed_heat)"
+    ]
+  },
+  {
+    "event": ["animal_missed_heat_deletion"],
+    "validationFields": ["date"],
+    "error": "AMH006",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Cannot delete this heat event if there are subsequent events for this animal."
+  }
+]

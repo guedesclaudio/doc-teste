@@ -1,0 +1,202 @@
+[
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["uuid"],
+    "error": "AMA001",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Animal is not defined."
+  },
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["date"],
+    "error": "AMA002",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Oldest mate date must be less than or equal to today.",
+    "conditions": [
+      "aplicado somente quando mates estiver definido (mates.length > 0)",
+      "utiliza a data do mate mais antigo (oldest mate)"
+    ]
+  },
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["date"],
+    "error": "AMA003",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Oldest mate date must be after or equal to the last animal event.",
+    "conditions": [
+      "aplicado somente quando mates estiver definido (mates.length > 0)",
+      "se o último evento do animal for o próprio mating, compara com o penúltimo evento ou a data de entrada",
+      "utiliza a data do mate mais antigo (oldest mate)"
+    ]
+  },
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["date"],
+    "error": "AMA004",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Event date must be on or after the male/semen entry date.",
+    "conditions": [
+      "aplicado somente quando mates estiver definido (mates.length > 0)",
+      "busca o animal macho pelo mate_uuid do oldest mate",
+      "retorna falso se não houver input_date disponível para o macho"
+    ]
+  },
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["date"],
+    "error": "AMA005",
+    "species": ["gilt"],
+    "stages": ["todos"],
+    "description": "Gilt age at the event date must be within farm-configured limits.",
+    "conditions": [
+      "aplicado somente quando mates estiver definido (mates.length > 0)",
+      "aplicado somente para leitoas (gilt)",
+      "calculado como diferença em dias entre birth_date do animal e a data do oldest mate",
+      "validado contra os threshold_references configurados na granja (event_set: animal_mating, type: date, threshold_rule: animal_type_gilt)"
+    ]
+  },
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["date"],
+    "error": "AMA006",
+    "species": ["sow"],
+    "stages": ["empty"],
+    "description": "Interval between reproductive loss (repeat_breeding) and mating must be within farm-configured limits.",
+    "conditions": [
+      "aplicado somente quando mates estiver definido (mates.length > 0)",
+      "aplicado somente para porcas (sow) em estágio empty cujo último evento é animal_loss_rpr do tipo repeat_breeding",
+      "calculado como diferença em dias entre a data do loss_rpr e a data do oldest mate",
+      "validado contra os threshold_references configurados na granja (event_set: animal_mating, type: date, threshold_rule: n_days_btwn_repeat_breeding_mating)"
+    ]
+  },
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["date"],
+    "error": "AMA007",
+    "species": ["sow"],
+    "stages": ["empty"],
+    "description": "Interval between reproductive loss (abortion) and mating must be within farm-configured limits.",
+    "conditions": [
+      "aplicado somente quando mates estiver definido (mates.length > 0)",
+      "aplicado somente para porcas (sow) em estágio empty cujo último evento é animal_loss_rpr do tipo abortion",
+      "calculado como diferença em dias entre a data do loss_rpr e a data do oldest mate",
+      "validado contra os threshold_references configurados na granja (event_set: animal_mating, type: date, threshold_rule: n_days_btwn_abortion_mating)"
+    ]
+  },
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["date"],
+    "error": "AMA008",
+    "species": ["sow"],
+    "stages": ["empty"],
+    "description": "Interval between reproductive loss (false_pregnancy) and mating must be within farm-configured limits.",
+    "conditions": [
+      "aplicado somente quando mates estiver definido (mates.length > 0)",
+      "aplicado somente para porcas (sow) em estágio empty cujo último evento é animal_loss_rpr do tipo false_pregnancy",
+      "calculado como diferença em dias entre a data do loss_rpr e a data do oldest mate",
+      "validado contra os threshold_references configurados na granja (event_set: animal_mating, type: date, threshold_rule: n_days_btwn_false_pregnancy_mating)"
+    ]
+  },
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["date"],
+    "error": "AMA009",
+    "species": ["sow"],
+    "stages": ["empty"],
+    "description": "Interval between weaning and mating must be within farm-configured limits.",
+    "conditions": [
+      "aplicado somente quando mates estiver definido (mates.length > 0)",
+      "aplicado somente para porcas (sow) em estágio empty cujo último evento é animal_weaning",
+      "calculado como diferença em dias entre a data do weaning e a data do oldest mate",
+      "validado contra os threshold_references configurados na granja (event_set: animal_mating, type: date, threshold_rule: n_days_btwn_weaning_mating)"
+    ]
+  },
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["date"],
+    "error": "AMA010",
+    "species": ["sow"],
+    "stages": ["empty"],
+    "description": "Interval between last mating and current mating must be within farm-configured limits.",
+    "conditions": [
+      "aplicado somente quando mates estiver definido (mates.length > 0)",
+      "aplicado somente para porcas (sow) em estágio empty",
+      "para porcas OG empty sem cobertura e sem mating_date, a regra é ignorada",
+      "para porcas OG gestantes sem cobertura registrada, utiliza mating_date do animal",
+      "retorna falso se não houver data de cobertura disponível",
+      "calculado como diferença em dias entre a última cobertura e a data do oldest mate",
+      "validado contra os threshold_references configurados na granja (event_set: animal_mating, type: date, threshold_rule: n_days_btwn_matings)"
+    ]
+  },
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["date"],
+    "error": "AMA011",
+    "species": ["sow"],
+    "stages": ["lactating"],
+    "description": "Interval from last abortion to mating must be within farm-configured limits (nurse-mother).",
+    "conditions": [
+      "aplicado somente quando mates estiver definido (mates.length > 0)",
+      "aplicado somente para porcas (sow) em estágio lactating que SÃO nurse_mother",
+      "ignorado se não houver abortion registrado",
+      "calculado como diferença em dias entre a data do último abortion e a data do oldest mate",
+      "validado contra os threshold_references configurados na granja (event_set: animal_mating, type: date, threshold_rule: n_days_btwn_abortion_mating)"
+    ]
+  },
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["date"],
+    "error": "AMA012",
+    "species": ["sow"],
+    "stages": ["lactating"],
+    "description": "Interval from last farrowing to mating must be within farm-configured limits (non-nurse-mother).",
+    "conditions": [
+      "aplicado somente quando mates estiver definido (mates.length > 0)",
+      "aplicado somente para porcas (sow) em estágio lactating que NÃO são nurse_mother e cujo último evento é animal_parturition",
+      "retorna falso se não houver data do último parto disponível",
+      "calculado como diferença em dias entre a data do último parto e a data do oldest mate",
+      "validado contra os threshold_references configurados na granja (event_set: animal_mating, type: date, threshold_rule: n_days_btwn_parturition_mating)"
+    ]
+  },
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["weight"],
+    "error": "AMA013",
+    "species": ["sow"],
+    "stages": ["todos"],
+    "description": "Weight must be within farm-configured limits (sow).",
+    "conditions": [
+      "aplicado somente quando weight estiver definido",
+      "aplicado somente para porcas (sow)",
+      "validado contra os threshold_references configurados na granja (event_set: animal_mating, type: weight, threshold_rule: animal_type_sow)"
+    ]
+  },
+  {
+    "event": ["animal_mating_register", "animal_mating_update"],
+    "validationFields": ["weight"],
+    "error": "AMA014",
+    "species": ["gilt"],
+    "stages": ["todos"],
+    "description": "Weight must be within farm-configured limits (gilt).",
+    "conditions": [
+      "aplicado somente quando weight estiver definido",
+      "aplicado somente para leitoas (gilt)",
+      "validado contra os threshold_references configurados na granja (event_set: animal_mating, type: weight, threshold_rule: animal_type_gilt)"
+    ]
+  },
+  {
+    "event": ["animal_mating_deletion"],
+    "validationFields": ["date"],
+    "error": "AMA015",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Cannot delete this event if there are subsequent events for this animal.",
+    "conditions": [
+      "compara a data do oldest mate do evento com a data do último evento do animal"
+    ]
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "event": ["animal_nurse_mother_register", "animal_nurse_mother_update"],
+    "validationFields": ["animal_uuid"],
+    "error": "ANM001",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Animal is not defined."
+  },
+  {
+    "event": ["animal_nurse_mother_register", "animal_nurse_mother_update"],
+    "validationFields": ["animal_uuid"],
+    "error": "ANM002",
+    "species": ["todas"],
+    "stages": ["empty"],
+    "description": "Animal must be in empty stage."
+  },
+  {
+    "event": ["animal_nurse_mother_register", "animal_nurse_mother_update"],
+    "validationFields": ["animal_uuid"],
+    "error": "ANM003",
+    "species": ["todas"],
+    "stages": ["empty"],
+    "description": "Last animal event must be a total weaning (animal_weaning) or an abortion (animal_loss_rpr).",
+    "conditions": [
+      "verifica o evento mais recente na lista de todos os eventos do animal ordenados por data",
+      "aceito se document = 'weanings' e weaning_type = 'total'",
+      "aceito se document = 'reproductive_losses' e rpr_loss_type = 'abortion'"
+    ]
+  },
+  {
+    "event": ["animal_nurse_mother_register", "animal_nurse_mother_update"],
+    "validationFields": ["animal_uuid"],
+    "error": "ANM004",
+    "species": ["todas"],
+    "stages": ["empty"],
+    "description": "Last animal event date must be equal to the animal's current stage date.",
+    "conditions": [
+      "compara a data do último evento (ordenado desc) com animalData.date",
+      "retorna falso se não houver evento registrado"
+    ]
+  },
+  {
+    "event": ["animal_nurse_mother_deletion"],
+    "validationFields": ["uuid"],
+    "error": "ANM005",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Cannot delete animal nurse mother if subsequent events exist."
+  }
+]
