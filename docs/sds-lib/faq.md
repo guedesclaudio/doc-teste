@@ -35,7 +35,7 @@ sidebar_position: 3
 
 ## P: Como a lib decide quais regras aplicar a cada evento?
 
-**R:** A lib utiliza um **Mapa de Validações** interno que associa o `type` do evento (ex: `animal_loss_off_register`) a um conjunto de regras específicas daquela versão. Essas regras variam conforme a espécie, o estágio do animal e as configurações da fazenda. Por isso, é vital consultar o [Explorador de Regras](/rules) sempre que uma nova regra for implementada ou alterada.
+**R:** A lib utiliza um **Mapa de Validações** interno que associa o `type` do evento (ex: `animal_loss_off_register`) a um conjunto de regras específicas daquela versão. Essas regras variam conforme a espécie, o estágio do animal e as configurações da fazenda. Por isso, é vital consultar o [Explorador de Regras](/sds-lib/rules) sempre que uma nova regra for implementada ou alterada.
 
 ---
 

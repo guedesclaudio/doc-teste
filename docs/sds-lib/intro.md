@@ -44,6 +44,6 @@ Todos os eventos seguem o padrão: `{grupo}_{ação}`
 ## Próximos passos
 
 - [Instalação](./installation) — Adicione a sds-lib ao seu projeto
-- [Explorador de Regras](/rules) — Navegue por todas as regras de validação
+- [Explorador de Regras](/sds-lib/rules) — Navegue por todas as regras de validação
 - [FAQ](./faq) — Perguntas frequentes e motivações
 - [Releases](./releases) — Histórico de versões

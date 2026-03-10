@@ -2,81 +2,89 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Heading from '@theme/Heading';
 import Layout from '@theme/Layout';
-import clsx from 'clsx';
 import type { ReactNode } from 'react';
 
 import styles from './index.module.css';
 
-const FEATURES = [
+const SYSTEMS = [
   {
-    title: 'Arquitetura Modular de Regras',
-    icon: '🗂️',
-    description:
-      'As regras são organizadas em arquivos JSON separados por grupo. Adicione um novo arquivo para estender o sistema — sem alterações no código.',
+    name: 'sds-lib',
+    description: 'Motor de validação de regras de negócio para eventos de gestão animal. Garante integridade dos dados em todo o ciclo de vida pecuário.',
+    to: '/sds-lib/intro',
+    status: 'stable' as const,
   },
   {
-    title: 'Validação Orientada a Eventos',
-    icon: '⚡',
-    description:
-      'Cada evento do ciclo de vida animal (registro, atualização, exclusão) é validado contra o conjunto de regras relevante antes de ser persistido.',
+    name: 'sds-backend',
+    description: 'API principal da plataforma SDS. Responsável pela orquestração dos serviços e pela persistência dos dados.',
+    to: '/sds-backend/intro',
+    status: 'wip' as const,
   },
   {
-    title: 'Códigos de Erro Estruturados',
-    icon: '🔍',
-    description:
-      'Cada violação retorna um código de erro único (ex: AN009) e uma mensagem legível, facilitando o diagnóstico por desenvolvedores e suporte.',
+    name: 'sds-monitor',
+    description: 'Serviço de monitoramento e observabilidade. Acompanha métricas, logs e a saúde dos sistemas em produção.',
+    to: '/sds-monitor/intro',
+    status: 'wip' as const,
   },
   {
-    title: 'Ciente de Espécie e Estágio',
-    icon: '🐷',
-    description:
-      'As regras são escopadas para espécies específicas (porca, leitoa, varrão) e estágios reprodutivos (gestação, lactação, vazia) para controle preciso.',
+    name: 'sds-webhook',
+    description: 'Sistema de webhooks para disparo e gerenciamento de notificações de eventos para integrações externas.',
+    to: '/sds-webhook/intro',
+    status: 'wip' as const,
   },
   {
-    title: 'Explorador Interativo de Regras',
-    icon: '🗺️',
-    description:
-      'Navegue, pesquise e filtre todas as regras de validação neste portal. Ideal para desenvolvedores e equipes de suporte.',
+    name: 'sds-entity-sync',
+    description: 'Serviço de sincronização de entidades. Mantém a consistência de dados entre os sistemas acoplados da plataforma.',
+    to: '/sds-entity-sync/intro',
+    status: 'wip' as const,
   },
 ];
 
-function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
-  return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="/docs/intro">
-            Começar
-          </Link>
-          <Link
-            className="button button--outline button--secondary button--lg"
-            to="/rules"
-            style={{ marginLeft: '1rem' }}
-          >
-            Explorador de Regras
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-}
+const STATUS_LABEL: Record<'stable' | 'wip', string> = {
+  stable: 'Disponível',
+  wip: 'Em construção',
+};
 
-function Feature({ title, icon, description }: { title: string; icon: string; description: string }) {
+const STATUS_COLOR: Record<'stable' | 'wip', string> = {
+  stable: '#1a8a3a',
+  wip: '#b06000',
+};
+
+const STATUS_BG: Record<'stable' | 'wip', string> = {
+  stable: '#e6f4ea',
+  wip: '#fff4e0',
+};
+
+function SystemCard({ name, description, to, status }: (typeof SYSTEMS)[number]) {
   return (
-    <div className="col col--4" style={{ marginBottom: '2rem' }}>
-      <div className="card padding--md" style={{ height: '100%' }}>
-        <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{icon}</div>
-        <Heading as="h3" style={{ fontSize: '1rem', marginBottom: '0.5rem' }}>
-          {title}
-        </Heading>
-        <p style={{ fontSize: '0.875rem', color: 'var(--ifm-color-emphasis-700)', margin: 0 }}>
+    <div className="col col--6" style={{ marginBottom: '1.5rem' }}>
+      <div
+        className="card padding--lg"
+        style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Heading as="h3" style={{ margin: 0, fontSize: '1.1rem', fontFamily: 'monospace' }}>
+            {name}
+          </Heading>
+          <span
+            style={{
+              fontSize: '0.7rem',
+              fontWeight: 600,
+              padding: '0.2rem 0.55rem',
+              borderRadius: '999px',
+              color: STATUS_COLOR[status],
+              background: STATUS_BG[status],
+              letterSpacing: '0.03em',
+            }}
+          >
+            {STATUS_LABEL[status]}
+          </span>
+        </div>
+        <p style={{ fontSize: '0.875rem', color: 'var(--ifm-color-emphasis-700)', margin: 0, flexGrow: 1 }}>
           {description}
         </p>
+        <Link className="button button--primary button--sm" to={to}>
+          Ver documentação →
+        </Link>
       </div>
     </div>
   );
@@ -86,29 +94,28 @@ export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`${siteConfig.title} — Agriness`}
-      description="sds-lib — Motor de validação de regras de negócio para gestão pecuária. Por Agriness."
+      title={siteConfig.title}
+      description="Documentação central da plataforma SDS — Agriness"
     >
-      <HomepageHeader />
+      <header className={styles.heroBanner}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <Heading as="h1" style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>
+            SDS Platform
+          </Heading>
+          <p style={{ fontSize: '1.15rem', opacity: 0.85, maxWidth: '560px', margin: '0 auto 2rem' }}>
+            Documentação central da plataforma SDS.<br />
+            Selecione um sistema para começar.
+          </p>
+        </div>
+      </header>
+
       <main>
         <section style={{ padding: '3rem 0' }}>
           <div className="container">
             <div className="row">
-              {FEATURES.map((f) => (
-                <Feature key={f.title} {...f} />
+              {SYSTEMS.map((s) => (
+                <SystemCard key={s.name} {...s} />
               ))}
-            </div>
-
-            <div style={{ textAlign: 'center', marginTop: '2rem', padding: '2rem', background: 'var(--ifm-color-emphasis-100)', borderRadius: '0.75rem' }}>
-              <Heading as="h2" style={{ marginBottom: '0.5rem' }}>
-                Pronto para explorar as regras?
-              </Heading>
-              <p style={{ color: 'var(--ifm-color-emphasis-700)', marginBottom: '1.25rem' }}>
-                Use o Explorador de Regras para navegar por todas as validações com busca avançada e filtros.
-              </p>
-              <Link className="button button--primary button--lg" to="/rules">
-                Abrir Explorador de Regras
-              </Link>
             </div>
           </div>
         </section>

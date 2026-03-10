@@ -27,6 +27,11 @@ const sidebars: SidebarsConfig = {
       id: 'debug',
       label: 'Manual de Debug',
     },
+    {
+      type: 'link',
+      label: 'Explorador de Regras',
+      href: '/sds-lib/rules',
+    },
   ],
 };
 

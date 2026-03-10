@@ -26,7 +26,7 @@ Antes de analisar o código da lib, valide se o estado das entidades no ambiente
 
 A lib executa regras detalhadas que variam conforme a versão.
 
-- **Consulta técnica:** Verifique o [Explorador de Regras](/rules) para entender o gatilho da regra que falhou.
+- **Consulta técnica:** Verifique o [Explorador de Regras](/sds-lib/rules) para entender o gatilho da regra que falhou.
 - **Versão da Lib:** Certifique-se de que o projeto está utilizando uma versão estável. Versões instáveis podem apresentar comportamentos inesperados. Consulte as [Releases](./releases).
 
 ---

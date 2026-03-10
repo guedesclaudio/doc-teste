@@ -14,8 +14,8 @@ async function tailwindPlugin() {
 }
 
 const config: Config = {
-  title: 'sds-lib',
-  tagline: 'Motor de validação de regras de negócio para gestão pecuária — por Agriness',
+  title: 'SDS Docs',
+  tagline: 'Documentação central da plataforma SDS — Agriness',
   favicon: 'img/favicon.ico',
 
   future: {
@@ -36,13 +36,54 @@ const config: Config = {
     locales: ['pt-BR'],
   },
 
-  plugins: [tailwindPlugin],
+  plugins: [
+    tailwindPlugin,
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'sds-backend',
+        path: 'docs/sds-backend',
+        routeBasePath: 'sds-backend',
+        sidebarPath: './sidebars.sds-backend.ts',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'sds-monitor',
+        path: 'docs/sds-monitor',
+        routeBasePath: 'sds-monitor',
+        sidebarPath: './sidebars.sds-monitor.ts',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'sds-webhook',
+        path: 'docs/sds-webhook',
+        routeBasePath: 'sds-webhook',
+        sidebarPath: './sidebars.sds-webhook.ts',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'sds-entity-sync',
+        path: 'docs/sds-entity-sync',
+        routeBasePath: 'sds-entity-sync',
+        sidebarPath: './sidebars.sds-entity-sync.ts',
+      },
+    ],
+  ],
 
   presets: [
     [
       'classic',
       {
         docs: {
+          id: 'sds-lib',
+          path: 'docs/sds-lib',
+          routeBasePath: 'sds-lib',
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/agriness/sds-lib/tree/main/docs/',
         },
@@ -61,37 +102,33 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     announcementBar: {
-      id: 'agriness_team',
-      content: '🐷 sds-lib — Motor de validação para eventos de animais | <strong>Agriness</strong>',
+      id: 'sds_platform',
+      content: '📚 SDS Docs — Documentação central da plataforma SDS | <strong>Agriness</strong>',
       backgroundColor: '#1a3a7a',
       textColor: '#e8eeff',
       isCloseable: true,
     },
     navbar: {
-      title: 'sds-lib',
+      title: 'SDS Docs',
       logo: {
         alt: 'Agriness Logo',
         src: 'img/logo.svg',
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'docsSidebar',
+          type: 'dropdown',
+          label: 'Sistemas',
           position: 'left',
-          label: 'Documentação',
+          items: [
+            { label: 'sds-lib', to: '/sds-lib/intro' },
+            { label: 'sds-backend', to: '/sds-backend/intro' },
+            { label: 'sds-monitor', to: '/sds-monitor/intro' },
+            { label: 'sds-webhook', to: '/sds-webhook/intro' },
+            { label: 'sds-entity-sync', to: '/sds-entity-sync/intro' },
+          ],
         },
         {
-          to: '/rules',
-          label: 'Explorador de Regras',
-          position: 'left',
-        },
-        {
-          to: '/docs/releases',
-          label: 'Releases',
-          position: 'left',
-        },
-        {
-          href: 'https://github.com/agriness/sds-lib',
+          href: 'https://github.com/agriness',
           label: 'GitHub',
           position: 'right',
         },
@@ -101,24 +138,28 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Documentação',
+          title: 'Sistemas',
           items: [
-            { label: 'Introdução', to: '/docs/intro' },
-            { label: 'Instalação', to: '/docs/installation' },
-            { label: 'FAQ', to: '/docs/faq' },
-            { label: 'Releases', to: '/docs/releases' },
+            { label: 'sds-lib', to: '/sds-lib/intro' },
+            { label: 'sds-backend', to: '/sds-backend/intro' },
+            { label: 'sds-monitor', to: '/sds-monitor/intro' },
+            { label: 'sds-webhook', to: '/sds-webhook/intro' },
+            { label: 'sds-entity-sync', to: '/sds-entity-sync/intro' },
           ],
         },
         {
-          title: 'Regras',
+          title: 'sds-lib',
           items: [
-            { label: 'Explorador de Regras', to: '/rules' },
+            { label: 'Introdução', to: '/sds-lib/intro' },
+            { label: 'Instalação', to: '/sds-lib/installation' },
+            { label: 'FAQ', to: '/sds-lib/faq' },
+            { label: 'Explorador de Regras', to: '/sds-lib/rules' },
           ],
         },
         {
           title: 'Agriness',
           items: [
-            { label: 'GitHub', href: 'https://github.com/agriness-team/sds-lib' },
+            { label: 'GitHub', href: 'https://github.com/agriness' },
           ],
         },
       ],
