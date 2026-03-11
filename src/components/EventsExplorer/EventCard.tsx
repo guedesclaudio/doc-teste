@@ -8,7 +8,6 @@ interface EventCardProps {
   query: string;
 }
 
-/** Highlights the matched portion of a string. */
 function Highlight({ text, query }: { text: string; query: string }) {
   if (!query) return <>{text}</>;
   const idx = text.toLowerCase().indexOf(query.toLowerCase());
@@ -22,7 +21,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
   );
 }
 
-const MAX_FIELDS_VISIBLE = 6;
+const MAX_FIELDS_VISIBLE = 5;
 
 export default function EventCard({ event, query }: EventCardProps) {
   const [open, setOpen] = useState(false);
@@ -32,11 +31,21 @@ export default function EventCard({ event, query }: EventCardProps) {
 
   return (
     <>
-      <div className={styles.card} onClick={() => setOpen(true)} role="button" tabIndex={0}
-        onKeyDown={(e) => e.key === 'Enter' && setOpen(true)}>
-        {/* Header */}
+      <div
+        className={styles.card}
+        onClick={() => setOpen(true)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === 'Enter' && setOpen(true)}
+      >
+        {/* Header: category + eventType */}
         <div className={styles.cardHeader}>
           <span className={styles.categoryBadge}>{event.category}</span>
+          {event.eventType && (
+            <code className={styles.eventTypeChip}>
+              <Highlight text={event.eventType} query={query} />
+            </code>
+          )}
         </div>
 
         {/* Event name */}
@@ -63,12 +72,7 @@ export default function EventCard({ event, query }: EventCardProps) {
 
         {/* Footer */}
         <div className={styles.cardFooter}>
-          <span className={styles.detailsHint}>
-            Clique para ver schema e exemplo
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style={{ marginLeft: '0.3rem' }}>
-              <path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-          </span>
+          <span className={styles.detailsHint}>Ver schema e exemplo →</span>
         </div>
       </div>
 

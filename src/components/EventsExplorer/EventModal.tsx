@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CodeBlock from '@theme/CodeBlock';
 import type { EventEntry } from './types';
 import styles from './EventsExplorer.module.css';
@@ -8,8 +8,11 @@ interface EventModalProps {
   onClose: () => void;
 }
 
+type Tab = 'schema' | 'example';
+
 export default function EventModal({ event, onClose }: EventModalProps) {
-  // Close on Escape key
+  const [tab, setTab] = useState<Tab>(event.schema ? 'schema' : 'example');
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', onKey);
@@ -22,55 +25,55 @@ export default function EventModal({ event, onClose }: EventModalProps) {
 
   return (
     <div className={styles.modalOverlay} onClick={onClose} role="dialog" aria-modal="true">
-      <div
-        className={styles.modalContent}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header */}
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+
+        {/* ── Header ─────────────────────────────────────────── */}
         <div className={styles.modalHeader}>
-          <div className={styles.modalTitleRow}>
+          <div className={styles.modalMeta}>
             <span className={styles.categoryBadge}>{event.category}</span>
-            <h2 className={styles.modalTitle}>{event.name}</h2>
+            {event.eventType && (
+              <code className={styles.eventTypeChip}>{event.eventType}</code>
+            )}
           </div>
+          <h2 className={styles.modalTitle}>{event.name}</h2>
           <button className={styles.modalClose} onClick={onClose} aria-label="Fechar">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M2 2l14 14M16 2 2 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 2l12 12M14 2 2 14" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round"/>
             </svg>
           </button>
         </div>
 
-        {/* Body */}
-        <div className={styles.modalBody}>
-          {/* Schema */}
+        {/* ── Tabs ───────────────────────────────────────────── */}
+        <div className={styles.modalTabs}>
           {event.schema && (
-            <section className={styles.modalSection}>
-              <h3 className={styles.modalSectionTitle}>Schema</h3>
-              <CodeBlock language="python">{event.schema}</CodeBlock>
-            </section>
+            <button
+              className={`${styles.modalTab} ${tab === 'schema' ? styles.modalTabActive : ''}`}
+              onClick={() => setTab('schema')}
+            >
+              Schema
+            </button>
           )}
-
-          {/* Example */}
           {event.example && (
-            <section className={styles.modalSection}>
-              <h3 className={styles.modalSectionTitle}>Exemplo</h3>
-              <CodeBlock language="python">{event.example}</CodeBlock>
-            </section>
-          )}
-
-          {/* Fields list */}
-          {event.fields.length > 0 && (
-            <section className={styles.modalSection}>
-              <h3 className={styles.modalSectionTitle}>Campos indexados</h3>
-              <div className={styles.fields}>
-                {event.fields.map((f) => (
-                  <code key={f} className={styles.fieldChip}>{f}</code>
-                ))}
-              </div>
-            </section>
+            <button
+              className={`${styles.modalTab} ${tab === 'example' ? styles.modalTabActive : ''}`}
+              onClick={() => setTab('example')}
+            >
+              Exemplo
+            </button>
           )}
         </div>
 
-        {/* Footer */}
+        {/* ── Body ───────────────────────────────────────────── */}
+        <div className={styles.modalBody}>
+          {tab === 'schema' && event.schema && (
+            <CodeBlock language="python">{event.schema}</CodeBlock>
+          )}
+          {tab === 'example' && event.example && (
+            <CodeBlock language="python">{event.example}</CodeBlock>
+          )}
+        </div>
+
+        {/* ── Footer ─────────────────────────────────────────── */}
         <div className={styles.modalFooter}>
           <a
             href={event.link}
@@ -79,7 +82,7 @@ export default function EventModal({ event, onClose }: EventModalProps) {
             className={styles.docLink}
           >
             Ver no GitHub
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
               <path d="M2 2h8v8M10 2 2 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
           </a>
