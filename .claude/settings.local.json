@@ -13,7 +13,10 @@
       "Bash(cp docs/debug.md docs/sds-lib/)",
       "Bash(rm docs/intro.md docs/installation.md docs/faq.md docs/releases.md docs/debug.md)",
       "Bash(rm -rf docs/tutorial-basics docs/tutorial-extras)",
-      "WebFetch(domain:api.github.com)"
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(gh api:*)",
+      "Bash(where gh:*)"
     ]
   }
 }
