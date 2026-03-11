@@ -41,6 +41,19 @@
     ]
   },
   {
+    "event": ["animal_nurse_mother_register", "animal_nurse_mother_update"],
+    "validationFields": ["date"],
+    "error": "ANM006",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "The event date must match the animal's registration date.",
+    "conditions": [
+      "date deve estar definido (isDefined)",
+      "compara animalData.date com data.date ignorando hora (apenas UTC day/month/year)",
+      "retorna falso se as datas não coincidirem"
+    ]
+  },
+  {
     "event": ["animal_nurse_mother_deletion"],
     "validationFields": ["uuid"],
     "error": "ANM005",

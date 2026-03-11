@@ -28,9 +28,9 @@ const sidebars: SidebarsConfig = {
       label: 'Manual de Debug',
     },
     {
-      type: 'link',
+      type: 'doc',
+      id: 'rules',
       label: 'Explorador de Regras',
-      href: '/sds-lib/rules',
     },
   ],
 };
