@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import type { EventEntry } from './types';
 import EventModal from './EventModal';
 import styles from './EventsExplorer.module.css';
@@ -23,7 +23,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
 
 const MAX_FIELDS_VISIBLE = 5;
 
-export default function EventCard({ event, query }: EventCardProps) {
+const EventCard = memo(function EventCard({ event, query }: EventCardProps) {
   const [open, setOpen] = useState(false);
 
   const visibleFields = event.fields.slice(0, MAX_FIELDS_VISIBLE);
@@ -79,4 +79,6 @@ export default function EventCard({ event, query }: EventCardProps) {
       {open && <EventModal event={event} onClose={() => setOpen(false)} />}
     </>
   );
-}
+});
+
+export default EventCard;

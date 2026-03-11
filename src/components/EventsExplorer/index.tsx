@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useDeferredValue, useMemo, useState } from 'react';
 import eventsIndex from '../../data/events-index.json';
 import type { EventEntry } from './types';
 import EventCard from './EventCard';
@@ -6,24 +6,36 @@ import styles from './EventsExplorer.module.css';
 
 const events = eventsIndex as EventEntry[];
 
+// Pre-compute lowercase search fields once at module load — never repeated per keystroke
+const eventsSearchable = events.map((e) => ({
+  ...e,
+  _name:      e.name.toLowerCase(),
+  _eventType: e.eventType?.toLowerCase() ?? '',
+  _fields:    e.fields.map((f) => f.toLowerCase()),
+}));
+
 const categories = Array.from(new Set(events.map((e) => e.category))).sort();
 
 export default function EventsExplorer() {
   const [query,    setQuery]    = useState('');
   const [category, setCategory] = useState('');
 
+  // Defers heavy filtering so the input stays responsive even with many items
+  const deferredQuery    = useDeferredValue(query);
+  const deferredCategory = useDeferredValue(category);
+
   const filtered = useMemo(() => {
-    const q = query.toLowerCase().trim();
-    return events.filter((e) => {
-      if (category && e.category !== category) return false;
+    const q = deferredQuery.toLowerCase().trim();
+    return eventsSearchable.filter((e) => {
+      if (deferredCategory && e.category !== deferredCategory) return false;
       if (!q) return true;
       return (
-        e.name.toLowerCase().includes(q) ||
-        e.eventType?.toLowerCase().includes(q) ||
-        e.fields.some((f) => f.toLowerCase().includes(q))
+        e._name.includes(q) ||
+        e._eventType.includes(q) ||
+        e._fields.some((f) => f.includes(q))
       );
     });
-  }, [query, category]);
+  }, [deferredQuery, deferredCategory]);
 
   return (
     <div className={styles.explorer}>
@@ -68,7 +80,7 @@ export default function EventsExplorer() {
             <EventCard
               key={`${e.category}-${e.rawTitle}`}
               event={e}
-              query={query}
+              query={deferredQuery}
             />
           ))}
         </div>
