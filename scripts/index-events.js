@@ -20,7 +20,7 @@ const REPO        = 'ponto-b-sandbox';
 const BRANCH      = 'development';
 const EVENTS_PATH = 'events/lists';
 const OUTPUT      = path.resolve(__dirname, '../src/data/events-index.json');
-const TOKEN       = process.env.GITHUB_TOKEN;
+const TOKEN       = process.env.TOKEN;
 
 // ── HTTP helper ────────────────────────────────────────────────────────────
 function get(url) {
