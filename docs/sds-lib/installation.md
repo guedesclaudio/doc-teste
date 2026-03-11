@@ -28,11 +28,40 @@ pnpm add @sds-lib/test
 ```typescript
 import { processInput, versionLib } from '@sds-lib/test';
 
-await processInput(body, this.url_sds, this.headers);
+async function test() {
+  const body = {
+    "source_id": "sds-lib-test",
+    "source_version": "1.0.0",
+    "source_user": "test",
+    "type": "animal_nurse_mother_register",
+    "version": "1.0",
+    "data": {
+      "farm_uuid": "1adb9694-c330-418e-93ad-c9647150367c",
+      "date": "2025-01-03",
+      "animal_uuid": "c67c3614-db9b-4796-95c0-a90e715c494e"
+    }
+  };
+  const headers = { apikey: 'sua-api-key' };
+  const urlSDS = 'https://sds-backend.agriness-qa.com';
+  await processInput(body, urlSDS, headers);
+}
 ```
 
 ## Formato da resposta
 
+- Sucesso
+```json
+{
+	"data": {
+		"event_id": "69b0818839b650c3e7f82334",
+		"uuid": "6658dc8c-bd21-42a7-ae3f-5894ed46550b"
+	},
+	"errors": [],
+	"logUUID": "b57a6d00-c82e-4a95-bc5c-ac3b8c1211a0"
+}
+```
+
+- Erro
 ```json
 {
   "data": [],
