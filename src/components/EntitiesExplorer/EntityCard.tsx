@@ -56,7 +56,7 @@ const EntityCard = memo(function EntityCard({ entity, query }: EntityCardProps) 
         {/* Fields */}
         {visibleFields.length > 0 && (
           <div className={styles.fieldsSection}>
-            <span className={styles.metaLabel}>Inferências</span>
+            <span className={styles.metaLabel}>Campos</span>
             <div className={styles.fields}>
               {visibleFields.map((f) => (
                 <code key={f} className={styles.fieldChip}>

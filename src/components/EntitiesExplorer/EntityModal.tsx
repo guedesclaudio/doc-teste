@@ -8,10 +8,10 @@ interface EntityModalProps {
   onClose: () => void;
 }
 
-type Tab = 'inferences' | 'example';
+type Tab = 'schema' | 'example';
 
 export default function EntityModal({ entity, onClose }: EntityModalProps) {
-  const [tab, setTab] = useState<Tab>(entity.inferences ? 'inferences' : 'example');
+  const [tab, setTab] = useState<Tab>(entity.schema ? 'schema' : 'example');
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
@@ -45,12 +45,12 @@ export default function EntityModal({ entity, onClose }: EntityModalProps) {
 
         {/* ── Tabs ───────────────────────────────────────────── */}
         <div className={styles.modalTabs}>
-          {entity.inferences && (
+          {entity.schema && (
             <button
-              className={`${styles.modalTab} ${tab === 'inferences' ? styles.modalTabActive : ''}`}
-              onClick={() => setTab('inferences')}
+              className={`${styles.modalTab} ${tab === 'schema' ? styles.modalTabActive : ''}`}
+              onClick={() => setTab('schema')}
             >
-              Inferências
+              Schema
             </button>
           )}
           {entity.example && (
@@ -65,11 +65,11 @@ export default function EntityModal({ entity, onClose }: EntityModalProps) {
 
         {/* ── Body ───────────────────────────────────────────── */}
         <div className={styles.modalBody}>
-          {tab === 'inferences' && entity.inferences && (
-            <CodeBlock language="text">{entity.inferences}</CodeBlock>
+          {tab === 'schema' && entity.schema && (
+            <CodeBlock language="python">{entity.schema}</CodeBlock>
           )}
           {tab === 'example' && entity.example && (
-            <CodeBlock language="json">{entity.example}</CodeBlock>
+            <CodeBlock language="python">{entity.example}</CodeBlock>
           )}
         </div>
 

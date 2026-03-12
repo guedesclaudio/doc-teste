@@ -2,7 +2,8 @@
 /**
  * scripts/index-entities.js
  *
- * Fetches Markdown inference files from GitHub and builds src/data/entities-index.json.
+ * Recursively fetches Markdown entity files from GitHub (entities/lists/**\/*.md)
+ * and builds src/data/entities-index.json.
  *
  * Usage:
  *   TOKEN=ghp_xxx node scripts/index-entities.js
@@ -15,12 +16,12 @@ const fs    = require('fs');
 const path  = require('path');
 
 // ── Config ─────────────────────────────────────────────────────────────────
-const OWNER          = 'agriness-team';
-const REPO           = 'ponto-b-sandbox';
-const BRANCH         = 'development';
-const ENTITIES_PATH  = 'entities/inferences';
-const OUTPUT         = path.resolve(__dirname, '../src/data/entities-index.json');
-const TOKEN          = process.env.TOKEN;
+const OWNER         = 'agriness-team';
+const REPO          = 'ponto-b-sandbox';
+const BRANCH        = 'development';
+const ENTITIES_PATH = 'entities/lists';
+const OUTPUT        = path.resolve(__dirname, '../src/data/entities-index.json');
+const TOKEN         = process.env.TOKEN;
 
 // ── HTTP helper ────────────────────────────────────────────────────────────
 function get(url) {
@@ -46,84 +47,68 @@ function get(url) {
   });
 }
 
-// ── Extract field names from inference text ────────────────────────────────
-// Matches lines like:  "farm_uuid": str (Common Root Inference): ...
-function extractFields(text) {
+// ── Recursively list all .md files under a GitHub path ────────────────────
+// Skips README.md files.
+async function listMarkdownFiles(dirPath) {
+  const url     = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${dirPath}?ref=${BRANCH}`;
+  const entries = await get(url);
+
+  const files = [];
+  for (const entry of entries) {
+    if (
+      entry.type === 'file' &&
+      entry.name.endsWith('.md') &&
+      entry.name.toLowerCase() !== 'readme.md'
+    ) {
+      files.push(entry);
+    } else if (entry.type === 'dir') {
+      const subFiles = await listMarkdownFiles(entry.path);
+      files.push(...subFiles);
+    }
+  }
+  return files;
+}
+
+// ── Derive category from the file path ────────────────────────────────────
+// entities/lists/swine/animal_gilt_empty.md → "SWINE"
+// entities/lists/animal_gilt_empty.md       → "ANIMAL GILT EMPTY"
+function categoryFromPath(filePath) {
+  const parts    = filePath.split('/');
+  const listsIdx = parts.indexOf('lists');
+  if (listsIdx === -1) return 'UNKNOWN';
+
+  const afterLists = parts.slice(listsIdx + 1);
+  if (afterLists.length > 1) {
+    return afterLists[0].replace(/_/g, ' ').toUpperCase();
+  }
+  return afterLists[0].replace(/\.md$/i, '').replace(/_/g, ' ').toUpperCase();
+}
+
+// ── Extract field names from a Python schema block ─────────────────────────
+// Matches top-level lines like:  "farm_uuid": str,   "uuid": str,
+function extractFields(code) {
   const fields = [];
-  const re = /^\s*"(\w+)":/gm;
+  const re = /^\s+"(\w+)":/gm;
   let m;
-  while ((m = re.exec(text)) !== null) {
+  while ((m = re.exec(code)) !== null) {
     if (!fields.includes(m[1])) fields.push(m[1]);
   }
   return fields;
 }
 
-// ── Extract code blocks from a section ────────────────────────────────────
-// Returns first ```json or ```python block found
-function extractExample(text) {
-  const m = /```(?:json|python)\s*([\s\S]*?)```/.exec(text);
-  return m ? m[1].trim() : '';
-}
-
-// ── Extract raw inference field lines from a section ──────────────────────
-// Lines that start with optional whitespace and a quoted field name
-function extractInferences(text) {
-  const lines = text.split('\n');
-  const inferenceLines = [];
-  let inCodeBlock = false;
-
-  for (const line of lines) {
-    if (line.trim().startsWith('```')) {
-      inCodeBlock = !inCodeBlock;
-      continue;
-    }
-    if (inCodeBlock) continue;
-
-    // Keep lines that look like field definitions or descriptive text
-    // Skip "Example:" markers and blank preamble
-    if (/^\s*"(\w+)":/.test(line) || (inferenceLines.length > 0 && line.trim() !== '')) {
-      inferenceLines.push(line);
-    }
-  }
-
-  return inferenceLines.join('\n').trim();
-}
-
-// ── Derive category from filename ─────────────────────────────────────────
-// "animal_inferences.md" → "ANIMAL"
-// "animal_group_inferences.md" → "ANIMAL GROUP"
-function categoryFromFilename(filename) {
-  return filename
-    .replace(/_inferences\.md$/i, '')
-    .replace(/_/g, ' ')
-    .toUpperCase();
-}
-
 // ── Parse a markdown file → EntityEntry[] ─────────────────────────────────
-function parseMarkdown(content, filename) {
-  const category = categoryFromFilename(filename);
-  const baseLink  = `https://github.com/${OWNER}/${REPO}/blob/${BRANCH}/${ENTITIES_PATH}/${filename}`;
+function parseMarkdown(content, filePath) {
+  const category = categoryFromPath(filePath);
+  const baseLink  = `https://github.com/${OWNER}/${REPO}/blob/${BRANCH}/${filePath}`;
   const entities  = [];
 
-  // Match section headings: ## 1. Animal  /  ### 1. Animal  /  ## Animal
-  // Also handles plain numbered headings without markdown markers
-  const headingRe = /^#{1,4}\s+(?:\d+\.\s+)?(.+)$/gm;
+  // Match ## N. Entity Name headings (sections within the file)
+  const headingRe = /^##\s+(?:\d+\.\s+)?(.+)$/gm;
   const matches   = [];
   let m;
 
   while ((m = headingRe.exec(content)) !== null) {
-    const title = m[1].trim();
-    // Skip the document title (first heading, usually "List of X Inferences")
-    if (/^list of/i.test(title)) continue;
-    matches.push({ name: title, index: m.index + m[0].length });
-  }
-
-  // Fallback: plain numbered sections  "1. Animal"  at the start of a line
-  if (matches.length === 0) {
-    const plainRe = /^(\d+\.\s+(.+))$/gm;
-    while ((m = plainRe.exec(content)) !== null) {
-      matches.push({ name: m[2].trim(), index: m.index + m[0].length });
-    }
+    matches.push({ name: m[1].trim(), index: m.index + m[0].length });
   }
 
   for (let i = 0; i < matches.length; i++) {
@@ -131,20 +116,24 @@ function parseMarkdown(content, filename) {
     const end     = matches[i + 1]?.index ?? content.length;
     const section = content.slice(index, end);
 
-    const fields     = extractFields(section);
-    const inferences = extractInferences(section);
-    const example    = extractExample(section);
-    const entity     = name.toLowerCase().replace(/\s+/g, '_');
+    // First python block = schema (field definitions), second = example
+    const blockRe = /```python\s*([\s\S]*?)```/g;
+    const blocks  = [];
+    let bm;
+    while ((bm = blockRe.exec(section)) !== null) {
+      blocks.push(bm[1].trim());
+    }
 
-    entities.push({
-      name,
-      entity,
-      category,
-      link: baseLink,
-      fields,
-      inferences,
-      example,
-    });
+    if (blocks.length === 0) continue;
+
+    const schema  = blocks[0];
+    const example = blocks[1] ?? '';
+    const fields  = extractFields(schema);
+
+    // "Animal - Swine - Gilt - Empty" → "animal_swine_gilt_empty"
+    const entity = name.toLowerCase().replace(/[\s\-]+/g, '_').replace(/[^a-z0-9_]/g, '');
+
+    entities.push({ name, entity, category, link: baseLink, fields, schema, example });
   }
 
   return entities;
@@ -156,20 +145,17 @@ async function main() {
     console.warn('⚠  TOKEN not set — requests may be rate-limited or fail for private repos.');
   }
 
-  const listUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${ENTITIES_PATH}?ref=${BRANCH}`;
-  console.log('Fetching file list…');
-  const entries = await get(listUrl);
-
-  const mdFiles = entries.filter((f) => f.type === 'file' && f.name.endsWith('.md'));
+  console.log(`Listing markdown files under ${ENTITIES_PATH} (recursive)…`);
+  const mdFiles = await listMarkdownFiles(ENTITIES_PATH);
   console.log(`Found ${mdFiles.length} markdown file(s)\n`);
 
   const allEntities = [];
 
   for (const file of mdFiles) {
-    process.stdout.write(`  ${file.name} … `);
+    process.stdout.write(`  ${file.path} … `);
     const fileData = await get(file.url);
     const content  = Buffer.from(fileData.content, 'base64').toString('utf-8');
-    const entities = parseMarkdown(content, file.name);
+    const entities = parseMarkdown(content, file.path);
     console.log(`${entities.length} entity(ies)`);
     allEntities.push(...entities);
   }
