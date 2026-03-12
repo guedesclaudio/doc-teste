@@ -1,0 +1,1911 @@
+[
+  {
+    "name": "AnimalType (or AnimalGroupAnimalType)",
+    "enum": "_animal_type",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "BROILER",
+      "GRILLER",
+      "GILT",
+      "SOW",
+      "MALE",
+      "PIGLET",
+      "SEMEN"
+    ],
+    "groups": [
+      {
+        "label": "Poultry Animal Type",
+        "values": [
+          "BROILER",
+          "GRILLER"
+        ]
+      },
+      {
+        "label": "Swine Animal Type",
+        "values": [
+          "GILT",
+          "SOW",
+          "MALE",
+          "PIGLET",
+          "SEMEN"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalStage",
+    "enum": "_animal_stage",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "EMPTY",
+      "PREGNANT",
+      "LACTATING",
+      "PREGNANT_AND_LACTATING",
+      "DEFAULT"
+    ],
+    "groups": [
+      {
+        "label": "Swine Gilt and Sow Stages",
+        "values": [
+          "EMPTY"
+        ]
+      },
+      {
+        "label": "Swine Sow Stages",
+        "values": [
+          "PREGNANT",
+          "LACTATING",
+          "PREGNANT_AND_LACTATING"
+        ]
+      },
+      {
+        "label": "Swine Male, Piglet and Semen Stages",
+        "values": [
+          "DEFAULT"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalMateType",
+    "enum": "_animal_mate_type",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "SEMEN",
+      "MALE"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "SEMEN",
+          "MALE"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalMatingType",
+    "enum": "_animal_mating_type",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "NOT_USED_FOR_MATING",
+      "ARTIFICIAL_INSEMINATION",
+      "NATURAL_MATING"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NOT_USED_FOR_MATING",
+          "ARTIFICIAL_INSEMINATION",
+          "NATURAL_MATING"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalRprLossType",
+    "enum": "_animal_rpr_loss_type",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "ABORTION",
+      "REPEAT_BREEDING",
+      "FALSE_PREGNANCY"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "ABORTION",
+          "REPEAT_BREEDING",
+          "FALSE_PREGNANCY"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalParturitionType",
+    "enum": "_animal_parturition_type",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "NORMAL",
+      "DYSTOCIA",
+      "INDUCED",
+      "INDUCED_DYSTOCIA"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NORMAL",
+          "DYSTOCIA",
+          "INDUCED",
+          "INDUCED_DYSTOCIA"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalWeaningType",
+    "enum": "_animal_weaning_type",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "PARTIAL",
+      "TOTAL"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "PARTIAL",
+          "TOTAL"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalTxnType",
+    "enum": "_animal_txn_type",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "STANDARD",
+      "INTERNAL_REPLACEMENT"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "STANDARD",
+          "INTERNAL_REPLACEMENT"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalOffspringTxnType",
+    "enum": "_animal_offspring_txn_type",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "DONATE",
+      "RECEIVE"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "DONATE",
+          "RECEIVE"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalBodyScore",
+    "enum": "_animal_body_score",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "VERY_THIN",
+      "THIN",
+      "GOOD",
+      "FAT",
+      "VERY_FAT"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "VERY_THIN",
+          "THIN",
+          "GOOD",
+          "FAT",
+          "VERY_FAT"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalIdPriority",
+    "enum": "_animal_id_priority",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "PRIMARY",
+      "SECONDARY",
+      "TERTIARY"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "PRIMARY",
+          "SECONDARY",
+          "TERTIARY"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalIdEquipment",
+    "enum": "_animal_id_equipment",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "EAR_TAG",
+      "ELECTRONIC_ID",
+      "TATTOO",
+      "EAR_NOTCH"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "EAR_TAG",
+          "ELECTRONIC_ID",
+          "TATTOO",
+          "EAR_NOTCH"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalIdType",
+    "enum": "_animal_id_type",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "DEFAULT",
+      "NATIONAL_GEN_ID"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "DEFAULT",
+          "NATIONAL_GEN_ID"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalInspectionStatus",
+    "enum": "_animal_inspection_status",
+    "category": "ANIMAL",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL.md",
+    "values": [
+      "APPROVED",
+      "FAILED"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "APPROVED",
+          "FAILED"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupStatus",
+    "enum": "_animal_group_status",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "PLANNED",
+      "OPENED",
+      "CLOSED"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "PLANNED",
+          "OPENED",
+          "CLOSED"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupRole (or ContinuousAgType)",
+    "enum": "_animal_group_role",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "DEFAULT",
+      "HOSPITAL",
+      "DISQUALIFIED"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "DEFAULT",
+          "HOSPITAL",
+          "DISQUALIFIED"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupTxnType",
+    "enum": "_animal_group_txn_type",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "STANDARD",
+      "TRANSFER",
+      "SLAUGHTER",
+      "SELECTION",
+      "DISQUALIFICATION",
+      "INTERNAL_REPLACEMENT",
+      "WEANING"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "STANDARD",
+          "TRANSFER",
+          "SLAUGHTER",
+          "SELECTION",
+          "DISQUALIFICATION",
+          "INTERNAL_REPLACEMENT",
+          "WEANING"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupExtTransferStatus (or ExternalTransferStatus)",
+    "enum": "_animal_group_ext_transfer_status",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "PENDING",
+      "REJECTED",
+      "APPROVED"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "PENDING",
+          "REJECTED",
+          "APPROVED"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupLossType",
+    "enum": "_animal_group_loss_type",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "DEATH_INPLACE",
+      "DEATH_OUTPUT",
+      "DEATH_SALEABLE",
+      "DISPOSAL_INPLACE",
+      "ERROR_SEXING"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "DEATH_INPLACE",
+          "DEATH_OUTPUT",
+          "DEATH_SALEABLE",
+          "DISPOSAL_INPLACE",
+          "ERROR_SEXING"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupOtherOutputType",
+    "enum": "_animal_group_other_output_type",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "DOMESTIC_CONSUMPTION",
+      "DONATION",
+      "DOMESTIC_CONSUMPTIONS_AND_DONATIONS",
+      "MISSING",
+      "LABORATORY_ANALYSIS"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "DOMESTIC_CONSUMPTION",
+          "DONATION",
+          "DOMESTIC_CONSUMPTIONS_AND_DONATIONS",
+          "MISSING",
+          "LABORATORY_ANALYSIS"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupCondemnationType",
+    "enum": "_animal_group_condemnation_type",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "PARTIAL",
+      "TOTAL"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "PARTIAL",
+          "TOTAL"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupCndOutputType",
+    "enum": "_animal_group_cnd_output_type",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "CUTTING_FOR_DISPOSAL",
+      "RENDERING_PLANT",
+      "TALLOW_PLANT",
+      "SALTING",
+      "COOKING",
+      "PRESERVATION"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "CUTTING_FOR_DISPOSAL",
+          "RENDERING_PLANT",
+          "TALLOW_PLANT",
+          "SALTING",
+          "COOKING",
+          "PRESERVATION"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupSampleType",
+    "enum": "_animal_group_sample_type",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "SLAUGHTER",
+      "OVERALL"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "SLAUGHTER",
+          "OVERALL"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupFcGroup (or FinancialClosureGroupType)",
+    "enum": "_animal_group_fc_group",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "INDICATOR",
+      "VALUE",
+      "RESOURCE"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "INDICATOR",
+          "VALUE",
+          "RESOURCE"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupFcIndAttrType (or FcIndicatorAttributeType)",
+    "enum": "_animal_group_fc_ind_attr_type",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "NOT_DEFINED",
+      "TOTAL_ANIMAL_INPUT",
+      "AVERAGE_WEIGHT_INPUT",
+      "AVERAGE_WEIGHT_OUTPUT",
+      "AVERAGE_WEIGHT_CARCASS",
+      "FEED_CONVERSION_RATIO",
+      "ADJ_FEED_CONVERSION_RATIO",
+      "PRODUCTIVE_EFFICIENCY_INDEX",
+      "RATE_MORTALITY_INPLACE",
+      "RATE_DISPOSAL_INPLACE",
+      "DAILY_WEIGHT_GAIN",
+      "DAYS_IN_STAGE"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NOT_DEFINED",
+          "TOTAL_ANIMAL_INPUT",
+          "AVERAGE_WEIGHT_INPUT",
+          "AVERAGE_WEIGHT_OUTPUT",
+          "AVERAGE_WEIGHT_CARCASS",
+          "FEED_CONVERSION_RATIO",
+          "ADJ_FEED_CONVERSION_RATIO",
+          "PRODUCTIVE_EFFICIENCY_INDEX",
+          "RATE_MORTALITY_INPLACE",
+          "RATE_DISPOSAL_INPLACE",
+          "DAILY_WEIGHT_GAIN",
+          "DAYS_IN_STAGE"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupFcValueType (or FinancialClosureValueType)",
+    "enum": "_animal_group_fc_value_type",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "BONUS",
+      "PENALTY",
+      "TOTALIZER",
+      "DESCRIPTOR"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "BONUS",
+          "PENALTY",
+          "TOTALIZER",
+          "DESCRIPTOR"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupFcValAttrType (or FcValueAttributeType)",
+    "enum": "_animal_group_fc_val_attr_type",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "NOT_DEFINED",
+      "AVERAGE_VALUE_PER_CAPITA",
+      "TOTAL",
+      "CHICK",
+      "FEED",
+      "POULTRY_FREIGHT",
+      "FEED_FREIGHT",
+      "LABOR",
+      "MEDICATION",
+      "PRODUCER_PAYMENT",
+      "PRODUCER_BONUS"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NOT_DEFINED",
+          "AVERAGE_VALUE_PER_CAPITA",
+          "TOTAL",
+          "CHICK",
+          "FEED",
+          "POULTRY_FREIGHT",
+          "FEED_FREIGHT",
+          "LABOR",
+          "MEDICATION",
+          "PRODUCER_PAYMENT",
+          "PRODUCER_BONUS"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupFcResourceType (or FinancialClosureResourceType)",
+    "enum": "_animal_group_fc_resource_type",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "PURCHASE",
+      "RETURN"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "PURCHASE",
+          "RETURN"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupFcAvgTimePeriod (or FcAverageTimePeriod)",
+    "enum": "_animal_group_fc_avg_time_period",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "MONTHLY",
+      "QUARTERLY",
+      "SEMI_ANNUAL",
+      "YEARLY"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "MONTHLY",
+          "QUARTERLY",
+          "SEMI_ANNUAL",
+          "YEARLY"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AnimalGroupFcAvgTimeInterval (or FcAverageTimeInterval)",
+    "enum": "_animal_group_fc_avg_time_interval",
+    "category": "ANIMAL GROUP AND CONTINUOUS AG",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/ANIMAL_GROUP_AND_CONTINUOUS_AG.md",
+    "values": [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC",
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4",
+      "S1",
+      "S2"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "JAN",
+          "FEB",
+          "MAR",
+          "APR",
+          "MAY",
+          "JUN",
+          "JUL",
+          "AUG",
+          "SEP",
+          "OCT",
+          "NOV",
+          "DEC",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q4",
+          "S1",
+          "S2"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "DeviceType",
+    "enum": "_device_type",
+    "category": "DEVICE",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/DEVICE.md",
+    "values": [
+      "MANUAL_HYDROMETER"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "MANUAL_HYDROMETER"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "EggGroupLossType",
+    "enum": "_egg_group_loss_type",
+    "category": "EGG GROUP",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/EGG_GROUP.md",
+    "values": [
+      "HATCHABLE_INCIDENT",
+      "HATCHABLE_OVERPRODUCTION",
+      "HATCHABLE_POSITIVITY",
+      "INCUBATED_INCIDENT",
+      "INCUBATED_POSITIVITY",
+      "INCUBATED_UNDEFINABLE"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "HATCHABLE_INCIDENT",
+          "HATCHABLE_OVERPRODUCTION",
+          "HATCHABLE_POSITIVITY",
+          "INCUBATED_INCIDENT",
+          "INCUBATED_POSITIVITY",
+          "INCUBATED_UNDEFINABLE"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "EggGroupTxnType (or EggGroupTransactionType)",
+    "enum": "_egg_group_txn_type",
+    "category": "EGG GROUP",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/EGG_GROUP.md",
+    "values": [
+      "PURCHASE",
+      "SALE",
+      "TRANSFER"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "PURCHASE",
+          "SALE",
+          "TRANSFER"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "EggGroupWeightPoint",
+    "enum": "_egg_group_weight_point",
+    "category": "EGG GROUP",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/EGG_GROUP.md",
+    "values": [
+      "INCUBATION",
+      "HATCHING"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "INCUBATION",
+          "HATCHING"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "EquipmentInstallationType",
+    "enum": "_equipment_installation_type",
+    "category": "EQUIPMENT",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/EQUIPMENT.md",
+    "values": [
+      "SINGLE_CYCLE_INCUBATOR",
+      "MULTI_CYCLE_INCUBATOR",
+      "HATCHERY"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "SINGLE_CYCLE_INCUBATOR",
+          "MULTI_CYCLE_INCUBATOR",
+          "HATCHERY"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "FacilityInstallationType",
+    "enum": "_facility_installation_type",
+    "category": "FACILITY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/FACILITY.md",
+    "values": [
+      "CONVENTIONAL",
+      "BLUE_HOUSE",
+      "DARK_HOUSE",
+      "WHITE_HOUSE",
+      "SEMI_DARK_HOUSE",
+      "CLIMATE_CONTROLLED",
+      "SEMI_CLIMATE_CONTROLLED",
+      "NEGATIVE_PRESSURE_CC",
+      "POSITIVE_PRESSURE_CC",
+      "OTHER"
+    ],
+    "groups": [
+      {
+        "label": "Poultry Facility Installation Types",
+        "values": [
+          "CONVENTIONAL",
+          "BLUE_HOUSE",
+          "DARK_HOUSE",
+          "WHITE_HOUSE",
+          "SEMI_DARK_HOUSE",
+          "CLIMATE_CONTROLLED",
+          "SEMI_CLIMATE_CONTROLLED",
+          "NEGATIVE_PRESSURE_CC",
+          "POSITIVE_PRESSURE_CC",
+          "OTHER"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "FarmWorkYearReference",
+    "enum": "_farm_work_year_reference",
+    "category": "FARM AND FARM MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/FARM_AND_FARM_MONTHLY.md",
+    "values": [
+      "DAY",
+      "WEEK"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "DAY",
+          "WEEK"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "FarmTokenStatus (or TokenStatus)",
+    "enum": "_farm_token_status",
+    "category": "FARM AND FARM MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/FARM_AND_FARM_MONTHLY.md",
+    "values": [
+      "GENERATED",
+      "ACTIVE",
+      "INACTIVE",
+      "EXPIRED",
+      "BLOCKED"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "GENERATED",
+          "ACTIVE",
+          "INACTIVE",
+          "EXPIRED",
+          "BLOCKED"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "FarmEconomicAccountType (or EconomicAccountType)",
+    "enum": "_farm_economic_account_type",
+    "category": "FARM AND FARM MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/FARM_AND_FARM_MONTHLY.md",
+    "values": [
+      "FIXED",
+      "VARIABLE"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "FIXED",
+          "VARIABLE"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "FarmEconomicGroup (or EconomicGroup)",
+    "enum": "_farm_economic_group",
+    "category": "FARM AND FARM MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/FARM_AND_FARM_MONTHLY.md",
+    "values": [
+      "S_ANIMAL_SALES_REVS",
+      "S_SUPPLY_SALES_REVS",
+      "S_SALEABLE_DEATHS_REVS",
+      "S_OTHER_REVS",
+      "S_MATERIAL_EXPS",
+      "S_LABOR_EXPS",
+      "S_NUTRITION_EXPS",
+      "S_HEALTH_EXPS",
+      "S_GENETICS_PURCHASES_EXPS",
+      "S_PIGLETS_PURCHASES_EXPS",
+      "S_MAINTENANCE_EXPS",
+      "S_ENERGY_EXPS",
+      "S_OTHER_EXPS",
+      "D_ANIMAL_SALES_REVS",
+      "D_MILK_PRODUCTION_REVS",
+      "D_OTHER_REVS",
+      "D_MATERIAL_EXPS",
+      "D_LABOR_EXPS",
+      "D_NUTRITION_EXPS",
+      "D_HEALTH_EXPS",
+      "D_HYGIENE_AND_CLEANING_EXPS",
+      "D_REPRODUCTION_EXPS",
+      "D_ANIMAL_PURCHASES_EXPS",
+      "D_MAINTENANCE_EXPS",
+      "D_ENERGY_AND_FUEL_EXPS",
+      "D_OTHER_EXPS"
+    ],
+    "groups": [
+      {
+        "label": "Swine Economic Groups",
+        "values": [
+          "S_ANIMAL_SALES_REVS",
+          "S_SUPPLY_SALES_REVS",
+          "S_SALEABLE_DEATHS_REVS",
+          "S_OTHER_REVS",
+          "S_MATERIAL_EXPS",
+          "S_LABOR_EXPS",
+          "S_NUTRITION_EXPS",
+          "S_HEALTH_EXPS",
+          "S_GENETICS_PURCHASES_EXPS",
+          "S_PIGLETS_PURCHASES_EXPS",
+          "S_MAINTENANCE_EXPS",
+          "S_ENERGY_EXPS",
+          "S_OTHER_EXPS"
+        ]
+      },
+      {
+        "label": "Dairy Economic Groups",
+        "values": [
+          "D_ANIMAL_SALES_REVS",
+          "D_MILK_PRODUCTION_REVS",
+          "D_OTHER_REVS",
+          "D_MATERIAL_EXPS",
+          "D_LABOR_EXPS",
+          "D_NUTRITION_EXPS",
+          "D_HEALTH_EXPS",
+          "D_HYGIENE_AND_CLEANING_EXPS",
+          "D_REPRODUCTION_EXPS",
+          "D_ANIMAL_PURCHASES_EXPS",
+          "D_MAINTENANCE_EXPS",
+          "D_ENERGY_AND_FUEL_EXPS",
+          "D_OTHER_EXPS"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "FarmEconomicOrigin",
+    "enum": "_farm_economic_origin",
+    "category": "FARM AND FARM MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/FARM_AND_FARM_MONTHLY.md",
+    "values": [
+      "HANDLING",
+      "SUPPLIES"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "HANDLING",
+          "SUPPLIES"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "FarmOutputGrpWeightType (or OutputGroupWeightType)",
+    "enum": "_farm_output_grp_weight_type",
+    "category": "FARM AND FARM MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/FARM_AND_FARM_MONTHLY.md",
+    "values": [
+      "TOTAL_WEIGHT",
+      "AVERAGE_WEIGHT"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "TOTAL_WEIGHT",
+          "AVERAGE_WEIGHT"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "MatingGroupInterval",
+    "enum": "_mating_group_interval",
+    "category": "FARM AND FARM MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/FARM_AND_FARM_MONTHLY.md",
+    "values": [
+      "NONE",
+      "TWELVE",
+      "FOURTEEN",
+      "EIGHTEEN",
+      "TWENTY_ONE",
+      "TWENTY_EIGHT",
+      "THIRTY_FIVE",
+      "THIRTY_SIX"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NONE",
+          "TWELVE",
+          "FOURTEEN",
+          "EIGHTEEN",
+          "TWENTY_ONE",
+          "TWENTY_EIGHT",
+          "THIRTY_FIVE",
+          "THIRTY_SIX"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HoldingType",
+    "enum": "_holding_type",
+    "category": "HOLDING AND H MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/HOLDING_AND_H_MONTHLY.md",
+    "values": [
+      "COMPANY",
+      "COOPERATIVE",
+      "RURAL_PROPERTY",
+      "OTHER"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "COMPANY",
+          "COOPERATIVE",
+          "RURAL_PROPERTY",
+          "OTHER"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HoldingLossGroup (or AnimalGroupLossGroup)",
+    "enum": "_holding_loss_group",
+    "category": "HOLDING AND H MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/HOLDING_AND_H_MONTHLY.md",
+    "values": [
+      "NOT_DEFINED",
+      "PHYSICAL",
+      "RESPIRATORY",
+      "ENTERIC",
+      "NEUROLOGICAL",
+      "ACCIDENTAL",
+      "PERFORMANCE",
+      "HANDLING",
+      "LOCOMOTOR",
+      "REPRODUCTIVE",
+      "SUDDEN_DEATH",
+      "CANNIBALISM",
+      "INSPECTION_FAILURE"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NOT_DEFINED",
+          "PHYSICAL",
+          "RESPIRATORY",
+          "ENTERIC",
+          "NEUROLOGICAL",
+          "ACCIDENTAL",
+          "PERFORMANCE",
+          "HANDLING",
+          "LOCOMOTOR",
+          "REPRODUCTIVE",
+          "SUDDEN_DEATH",
+          "CANNIBALISM",
+          "INSPECTION_FAILURE"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HoldingLossType",
+    "enum": "_holding_loss_type",
+    "category": "HOLDING AND H MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/HOLDING_AND_H_MONTHLY.md",
+    "values": [
+      "DEATH",
+      "DISPOSAL",
+      "FALLOUT",
+      "INSPECTION_FAILURE"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "DEATH",
+          "DISPOSAL",
+          "FALLOUT",
+          "INSPECTION_FAILURE"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HoldingLossCategory",
+    "enum": "_holding_loss_category",
+    "category": "HOLDING AND H MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/HOLDING_AND_H_MONTHLY.md",
+    "values": [
+      "ABORTION",
+      "REPEAT_BREEDING",
+      "FALSE_PREGNANCY"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "ABORTION",
+          "REPEAT_BREEDING",
+          "FALSE_PREGNANCY"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HoldingGeneticType (or AnimalGroupGenetic)",
+    "enum": "_holding_genetic_type",
+    "category": "HOLDING AND H MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/HOLDING_AND_H_MONTHLY.md",
+    "values": [
+      "NOT_DEFINED",
+      "ARBOR_ACRES",
+      "COBB",
+      "HUBBARD",
+      "HYBRID",
+      "MIXED",
+      "ROSS",
+      "AGROCERES",
+      "AXIOM",
+      "CHOICE_GENETICS",
+      "DANBRED",
+      "DB_SWINE_GENETICS",
+      "DNA",
+      "EMBRAPA",
+      "GENESUS",
+      "HYPOR",
+      "OTHER",
+      "PIC",
+      "SADIA",
+      "TOP_AURORA",
+      "TOPGEN",
+      "TOPIGS_NORSVIN"
+    ],
+    "groups": [
+      {
+        "label": "Any Genetic Type",
+        "values": [
+          "NOT_DEFINED"
+        ]
+      },
+      {
+        "label": "Poultry Genetic Type",
+        "values": [
+          "ARBOR_ACRES",
+          "COBB",
+          "HUBBARD",
+          "HYBRID",
+          "MIXED",
+          "ROSS"
+        ]
+      },
+      {
+        "label": "Swine Genetic Type",
+        "values": [
+          "AGROCERES",
+          "AXIOM",
+          "CHOICE_GENETICS",
+          "DANBRED",
+          "DB_SWINE_GENETICS",
+          "DNA",
+          "EMBRAPA",
+          "GENESUS",
+          "HYPOR",
+          "OTHER",
+          "PIC",
+          "SADIA",
+          "TOP_AURORA",
+          "TOPGEN",
+          "TOPIGS_NORSVIN"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HoldingCondemnationGroup (or AnimalGroupCondemnationGroup)",
+    "enum": "_holding_condemnation_group",
+    "category": "HOLDING AND H MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/HOLDING_AND_H_MONTHLY.md",
+    "values": [
+      "NOT_DEFINED",
+      "RESPIRATORY",
+      "ENTERIC",
+      "LOCOMOTOR",
+      "TECHNOLOGICAL_FAILURE",
+      "DERMATOLOGICAL",
+      "PARASITIC",
+      "PHYSICAL",
+      "ABSCESS",
+      "PERFORMANCE",
+      "ANIMAL_WELFARE",
+      "LYMPHADENITIS",
+      "EMERGENCY_SWINE",
+      "IMMUNOCASTRATION",
+      "SEPTICEMIA"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NOT_DEFINED",
+          "RESPIRATORY",
+          "ENTERIC",
+          "LOCOMOTOR",
+          "TECHNOLOGICAL_FAILURE",
+          "DERMATOLOGICAL",
+          "PARASITIC",
+          "PHYSICAL",
+          "ABSCESS",
+          "PERFORMANCE",
+          "ANIMAL_WELFARE",
+          "LYMPHADENITIS",
+          "EMERGENCY_SWINE",
+          "IMMUNOCASTRATION",
+          "SEPTICEMIA"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HoldingServiceGroup",
+    "enum": "_holding_service_group",
+    "category": "HOLDING AND H MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/HOLDING_AND_H_MONTHLY.md",
+    "values": [
+      "ADMINISTRATIVE",
+      "COMMERCIAL",
+      "NUTRITION",
+      "ANIMAL_HEALTH",
+      "MANAGEMENT",
+      "AMBIENCE",
+      "WELFARE"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "ADMINISTRATIVE",
+          "COMMERCIAL",
+          "NUTRITION",
+          "ANIMAL_HEALTH",
+          "MANAGEMENT",
+          "AMBIENCE",
+          "WELFARE"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HoldingConsumptionSchExecution (or ConsumptionSchExecution)",
+    "enum": "_holding_consumption_sch_execution",
+    "category": "HOLDING AND H MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/HOLDING_AND_H_MONTHLY.md",
+    "values": [
+      "DAILY",
+      "DAILY_OVER_WEEK"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "DAILY",
+          "DAILY_OVER_WEEK"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HoldingDocumentType",
+    "enum": "_holding_document_type",
+    "category": "HOLDING AND H MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/HOLDING_AND_H_MONTHLY.md",
+    "values": [
+      "NOT_DEFINED",
+      "LICENSE",
+      "PROTOCOL"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NOT_DEFINED",
+          "LICENSE",
+          "PROTOCOL"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HoldingVolumeIndicator",
+    "enum": "_holding_volume_indicator",
+    "category": "HOLDING AND H MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/HOLDING_AND_H_MONTHLY.md",
+    "values": [
+      "TOTAL_WEIGHT",
+      "WEIGHT_GAIN"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "TOTAL_WEIGHT",
+          "WEIGHT_GAIN"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HoldingAnimalType",
+    "enum": "_holding_animal_type",
+    "category": "HOLDING AND H MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/HOLDING_AND_H_MONTHLY.md",
+    "values": [
+      "WEANED",
+      "GROWED",
+      "FINISHED"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "WEANED",
+          "GROWED",
+          "FINISHED"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HoldingTxnType",
+    "enum": "_holding_txn_type",
+    "category": "HOLDING AND H MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/HOLDING_AND_H_MONTHLY.md",
+    "values": [
+      "SPOT_MARKET"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "SPOT_MARKET"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HoldingSchFrequency",
+    "enum": "_holding_sch_frequency",
+    "category": "HOLDING AND H MONTHLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/HOLDING_AND_H_MONTHLY.md",
+    "values": [
+      "DAILY",
+      "WEEKLY",
+      "MONTHLY",
+      "SEMIANNUAL",
+      "ANNUAL"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "DAILY",
+          "WEEKLY",
+          "MONTHLY",
+          "SEMIANNUAL",
+          "ANNUAL"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SupplyTargetType",
+    "enum": "_supply_target_type",
+    "category": "SUPPLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/SUPPLY.md",
+    "values": [
+      "FARM",
+      "FARM_AND_ANIMAL_GROUP"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "FARM",
+          "FARM_AND_ANIMAL_GROUP"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SupplyType",
+    "enum": "_supply_type",
+    "category": "SUPPLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/SUPPLY.md",
+    "values": [
+      "FEED",
+      "MEDICINE",
+      "VACCINE",
+      "DISINFECTANT",
+      "MATERIAL"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "FEED",
+          "MEDICINE",
+          "VACCINE",
+          "DISINFECTANT",
+          "MATERIAL"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SupplyFeedGroup",
+    "enum": "_supply_feed_group",
+    "category": "SUPPLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/SUPPLY.md",
+    "values": [
+      "NOT_DEFINED",
+      "P_PRE_INITIAL",
+      "P_INITIAL",
+      "P_GROWTH",
+      "P_GROWTH_I",
+      "P_GROWTH_II",
+      "P_PRE_PRD",
+      "P_PRODUCTION_I",
+      "P_PRODUCTION_II",
+      "P_PRODUCTION_III",
+      "P_DISPOSAL",
+      "P_FINISHING",
+      "S_MALE",
+      "S_RESTOCKING",
+      "S_PREGNANCY",
+      "S_PRE_PARTUM",
+      "S_LACTATION",
+      "S_PIGLET",
+      "S_PRE_INITIAL",
+      "S_INITIAL_I",
+      "S_INITIAL_II",
+      "S_INITIAL_III",
+      "S_GROWTH",
+      "S_ENDING"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NOT_DEFINED",
+          "P_PRE_INITIAL",
+          "P_INITIAL",
+          "P_GROWTH",
+          "P_GROWTH_I",
+          "P_GROWTH_II",
+          "P_PRE_PRD",
+          "P_PRODUCTION_I",
+          "P_PRODUCTION_II",
+          "P_PRODUCTION_III",
+          "P_DISPOSAL",
+          "P_FINISHING",
+          "S_MALE",
+          "S_RESTOCKING",
+          "S_PREGNANCY",
+          "S_PRE_PARTUM",
+          "S_LACTATION",
+          "S_PIGLET",
+          "S_PRE_INITIAL",
+          "S_INITIAL_I",
+          "S_INITIAL_II",
+          "S_INITIAL_III",
+          "S_GROWTH",
+          "S_ENDING"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SupplyMedicineGroup",
+    "enum": "_supply_medicine_group",
+    "category": "SUPPLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/SUPPLY.md",
+    "values": [
+      "NOT_DEFINED",
+      "P_ANTIBIOTICS",
+      "P_ANTICOAGULANTS",
+      "P_ANTI_INFLAMMATORY",
+      "P_HERBAL_REMEDIES",
+      "P_HYDRATION",
+      "P_SUPPLEMENTS",
+      "P_ANTIMICROBIALS",
+      "P_ANTIPARASITICS",
+      "S_ORGANIC_ACID",
+      "S_ANESTHETIC",
+      "S_ANTIBIOTICS",
+      "S_ANTICOAGULANTS",
+      "S_ANTI_HEMORRHAGIC",
+      "S_ANTI_INFLAMMATORY",
+      "S_NSAIDS",
+      "S_ANTIPARASITICS",
+      "S_ANTIPYRETIC",
+      "S_ANTITOXIN",
+      "S_HEALING_AGENT",
+      "S_COCCIDIOSTATIC",
+      "S_SWEETENER",
+      "S_HERBAL_REMEDIES",
+      "S_HYDRATION",
+      "S_HORMONES",
+      "S_MUCOLYTIC",
+      "S_PROSTAGLANDINS",
+      "S_REPELLENT",
+      "S_SUPPLEMENTS",
+      "S_HOMEOPATHY"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NOT_DEFINED",
+          "P_ANTIBIOTICS",
+          "P_ANTICOAGULANTS",
+          "P_ANTI_INFLAMMATORY",
+          "P_HERBAL_REMEDIES",
+          "P_HYDRATION",
+          "P_SUPPLEMENTS",
+          "P_ANTIMICROBIALS",
+          "P_ANTIPARASITICS",
+          "S_ORGANIC_ACID",
+          "S_ANESTHETIC",
+          "S_ANTIBIOTICS",
+          "S_ANTICOAGULANTS",
+          "S_ANTI_HEMORRHAGIC",
+          "S_ANTI_INFLAMMATORY",
+          "S_NSAIDS",
+          "S_ANTIPARASITICS",
+          "S_ANTIPYRETIC",
+          "S_ANTITOXIN",
+          "S_HEALING_AGENT",
+          "S_COCCIDIOSTATIC",
+          "S_SWEETENER",
+          "S_HERBAL_REMEDIES",
+          "S_HYDRATION",
+          "S_HORMONES",
+          "S_MUCOLYTIC",
+          "S_PROSTAGLANDINS",
+          "S_REPELLENT",
+          "S_SUPPLEMENTS",
+          "S_HOMEOPATHY"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SupplyVaccineGroup",
+    "enum": "_supply_vaccine_group",
+    "category": "SUPPLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/SUPPLY.md",
+    "values": [
+      "NOT_DEFINED",
+      "P_NEWCASTLE_DISEASE",
+      "P_INFECTIOUS_BRONCHITIS",
+      "P_AVIAN_ENCEPHALOMYELITIS",
+      "P_AVIAN_POX",
+      "P_INFECTIOUS_BURSAL_DISEASE",
+      "P_AVIAN_REOVIRUS",
+      "P_AVIAN_PNEUMOVIRUS",
+      "P_SALMONELLA_SP",
+      "P_INFECTIOUS_CORYZA",
+      "P_AVIAN_COLIBACILLOSIS",
+      "P_PASTEURELLA_MULTOCIDA",
+      "S_COLIBACILLOSIS",
+      "S_AUJESZKY_DISEASE",
+      "S_GLASSER_DISEASE",
+      "S_E_COLI",
+      "S_ENTEROTOXEMIA",
+      "S_ERYSIPELAS",
+      "S_FOOT_MOUTH_DISEASE",
+      "S_LAWSONIA",
+      "S_LEPTOSPIROSIS",
+      "S_IMMUNOCASTRATION",
+      "S_STREPTOCOCCAL_MENINGITIS",
+      "S_MYCOPLASMA_HYOPNEUMONIAE",
+      "S_PARVOVIRUS",
+      "S_PCV2",
+      "S_CLASSICAL_SWINE_FEVER",
+      "S_PORCINE_PLEUROPNEUMONIA",
+      "S_ATROPHIC_RHINITIS",
+      "S_ROTAVIRUS",
+      "S_SALMONELLOSIS",
+      "S_TRIPLE",
+      "S_MH_PCV2_DOUBLE"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NOT_DEFINED",
+          "P_NEWCASTLE_DISEASE",
+          "P_INFECTIOUS_BRONCHITIS",
+          "P_AVIAN_ENCEPHALOMYELITIS",
+          "P_AVIAN_POX",
+          "P_INFECTIOUS_BURSAL_DISEASE",
+          "P_AVIAN_REOVIRUS",
+          "P_AVIAN_PNEUMOVIRUS",
+          "P_SALMONELLA_SP",
+          "P_INFECTIOUS_CORYZA",
+          "P_AVIAN_COLIBACILLOSIS",
+          "P_PASTEURELLA_MULTOCIDA",
+          "S_COLIBACILLOSIS",
+          "S_AUJESZKY_DISEASE",
+          "S_GLASSER_DISEASE",
+          "S_E_COLI",
+          "S_ENTEROTOXEMIA",
+          "S_ERYSIPELAS",
+          "S_FOOT_MOUTH_DISEASE",
+          "S_LAWSONIA",
+          "S_LEPTOSPIROSIS",
+          "S_IMMUNOCASTRATION",
+          "S_STREPTOCOCCAL_MENINGITIS",
+          "S_MYCOPLASMA_HYOPNEUMONIAE",
+          "S_PARVOVIRUS",
+          "S_PCV2",
+          "S_CLASSICAL_SWINE_FEVER",
+          "S_PORCINE_PLEUROPNEUMONIA",
+          "S_ATROPHIC_RHINITIS",
+          "S_ROTAVIRUS",
+          "S_SALMONELLOSIS",
+          "S_TRIPLE",
+          "S_MH_PCV2_DOUBLE"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SupplyDisinfectantGroup",
+    "enum": "_supply_disinfectant_group",
+    "category": "SUPPLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/SUPPLY.md",
+    "values": [
+      "NOT_DEFINED",
+      "P_QUATERNARY_AMMONIA",
+      "P_CHLORINE_COMPOUNDS",
+      "P_IODINE_COMPOUNDS",
+      "P_BACTERICIDAL_CRESOL",
+      "P_BACTERICIDAL_PHENOL",
+      "P_FORMALDEHYDE",
+      "P_BACTERICIDAL_GLUTARALDEHYDE",
+      "P_HYDROGEN_PEROXIDE",
+      "S_GLUTARALDEHYDES",
+      "S_PHENOLS",
+      "S_AMMONIAS",
+      "S_IODINE",
+      "S_POTASSIUM_MONOPERSULFATE"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NOT_DEFINED",
+          "P_QUATERNARY_AMMONIA",
+          "P_CHLORINE_COMPOUNDS",
+          "P_IODINE_COMPOUNDS",
+          "P_BACTERICIDAL_CRESOL",
+          "P_BACTERICIDAL_PHENOL",
+          "P_FORMALDEHYDE",
+          "P_BACTERICIDAL_GLUTARALDEHYDE",
+          "P_HYDROGEN_PEROXIDE",
+          "S_GLUTARALDEHYDES",
+          "S_PHENOLS",
+          "S_AMMONIAS",
+          "S_IODINE",
+          "S_POTASSIUM_MONOPERSULFATE"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SupplyMaterialGroup",
+    "enum": "_supply_material_group",
+    "category": "SUPPLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/SUPPLY.md",
+    "values": [
+      "NOT_DEFINED",
+      "CLEANING",
+      "MAINTENANCE",
+      "MANAGEMENT",
+      "OFFICE"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NOT_DEFINED",
+          "CLEANING",
+          "MAINTENANCE",
+          "MANAGEMENT",
+          "OFFICE"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SupplyAdministrationRoute",
+    "enum": "_supply_administration_route",
+    "category": "SUPPLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/SUPPLY.md",
+    "values": [
+      "NOT_DEFINED",
+      "INTRAMUSCULAR",
+      "SUBCUTANEOUS",
+      "ORAL",
+      "SPRAY",
+      "IN_EGG",
+      "OTHER"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "NOT_DEFINED",
+          "INTRAMUSCULAR",
+          "SUBCUTANEOUS",
+          "ORAL",
+          "SPRAY",
+          "IN_EGG",
+          "OTHER"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SupplyFarmInputTxnType",
+    "enum": "_supply_farm_input_txn_type",
+    "category": "SUPPLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/SUPPLY.md",
+    "values": [
+      "PURCHASE",
+      "ADJUSTMENT"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "PURCHASE",
+          "ADJUSTMENT"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SupplyFarmOutputTxnType",
+    "enum": "_supply_farm_output_txn_type",
+    "category": "SUPPLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/SUPPLY.md",
+    "values": [
+      "SALE",
+      "RETURN",
+      "ADJUSTMENT"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "SALE",
+          "RETURN",
+          "ADJUSTMENT"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SupplyAgInputTxnType",
+    "enum": "_supply_ag_input_txn_type",
+    "category": "SUPPLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/SUPPLY.md",
+    "values": [
+      "PURCHASE"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "PURCHASE"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SupplyAgOutputTxnType",
+    "enum": "_supply_ag_output_txn_type",
+    "category": "SUPPLY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/SUPPLY.md",
+    "values": [
+      "RETURN"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "RETURN"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "ThirdPartyEntryType",
+    "enum": "_third_party_entry_type",
+    "category": "THIRD PARTY",
+    "link": "https://github.com/agriness-team/ponto-b-sandbox/blob/development/enums/lists/THIRD_PARTY.md",
+    "values": [
+      "CUSTOMER",
+      "SUPPLIER",
+      "CUSTOMER_AND_SUPPLIER"
+    ],
+    "groups": [
+      {
+        "label": "",
+        "values": [
+          "CUSTOMER",
+          "SUPPLIER",
+          "CUSTOMER_AND_SUPPLIER"
+        ]
+      }
+    ]
+  }
+]
