@@ -1,0 +1,229 @@
+[
+  {
+    "event": ["animal_transfer_off_register", "animal_transfer_off_update"],
+    "validationFields": ["uuid"],
+    "error": "ATOF001",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "Animal is not defined."
+  },
+  {
+    "event": ["animal_transfer_off_register", "animal_transfer_off_update"],
+    "validationFields": ["uuid"],
+    "error": "ATOF002",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "Animal stage must be lactating or pregnant_and_lactating."
+  },
+  {
+    "event": ["animal_transfer_off_register", "animal_transfer_off_update"],
+    "validationFields": ["date"],
+    "error": "ATOF003",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "Transfer date must be less than or equal to today.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente quando off_txn_type efetivo for donate ou receive (considera o valor do próprio evento em updates)"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_register", "animal_transfer_off_update"],
+    "validationFields": ["date"],
+    "error": "ATOF004",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "Must be equal or after the date of the last event that triggered lactating or pregnant_and_lactating.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente quando off_txn_type efetivo for donate ou receive",
+      "usa a última data de parto (parturition) ou de nurse_mother como referência",
+      "retorna falso se nenhuma das datas de referência estiver disponível"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_register", "animal_transfer_off_update"],
+    "validationFields": ["date"],
+    "error": "ATOF005",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "For nurse-mother sows, the transfer date must be on or after the nurse mother registration date.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente quando off_txn_type efetivo for donate ou receive",
+      "aplicado somente para porcas que SÃO nurse_mother",
+      "retorna falso se não houver data de nurse_mother registrada"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_register", "animal_transfer_off_update"],
+    "validationFields": ["date"],
+    "error": "ATOF006",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "For non-nurse-mother sows, the transfer date must be on or after the last parturition date.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente quando off_txn_type efetivo for donate ou receive",
+      "aplicado somente para porcas que NÃO são nurse_mother",
+      "retorna falso se não houver data de parto registrada"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_register", "animal_transfer_off_update"],
+    "validationFields": ["date"],
+    "error": "ATOF007",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "The transfer date must be after the sow's last partial weaning date.",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente quando off_txn_type efetivo for donate ou receive",
+      "ignorado se não houver desmame parcial registrado"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_register", "animal_transfer_off_update"],
+    "validationFields": ["quantity"],
+    "error": "ATOF008",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "The quantity of piglets must be greater than 0.",
+    "conditions": [
+      "aplicado somente quando quantity estiver definido",
+      "aplicado somente quando off_txn_type efetivo for donate ou receive"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_register", "animal_transfer_off_update"],
+    "validationFields": ["quantity"],
+    "error": "ATOF009",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "The quantity of piglets must not exceed the maximum threshold for total born (animal_parturition).",
+    "event_set": "animal_parturition",
+    "threshold_type": "total_born",
+    "conditions": [
+      "aplicado somente quando quantity estiver definido",
+      "aplicado somente quando off_txn_type efetivo for donate ou receive",
+      "validado contra o threshold_references máximo configurado na granja (event_set: animal_parturition, type: total_born)"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_register"],
+    "validationFields": ["quantity"],
+    "error": "ATOF010",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "The quantity of donated piglets must not exceed the sow's available piglet balance.",
+    "conditions": [
+      "aplicado somente quando quantity estiver definido",
+      "aplicado somente quando off_txn_type efetivo for donate",
+      "compara quantity com o total_piglets atual do animal"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_update"],
+    "validationFields": ["quantity"],
+    "error": "ATOF011",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "To update quantity, this event should be the last registered event.",
+    "conditions": [
+      "aplicado somente quando quantity estiver definido",
+      "verifica se o uuid do evento coincide com o last_event do animal"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_update"],
+    "validationFields": ["quantity"],
+    "error": "ATOF012",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "The quantity of donated piglets must not exceed the sow's available piglet balance.",
+    "conditions": [
+      "aplicado somente quando quantity estiver definido",
+      "aplicado somente quando off_txn_type efetivo for donate",
+      "o saldo anterior é calculado somando total_piglets atual com a quantity do próprio evento"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_register"],
+    "validationFields": ["quantity"],
+    "error": "ATOF013",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "The sum of transferred piglets and total_piglets balance cannot exceed the maximum threshold for total born (animal_parturition).",
+    "event_set": "animal_parturition",
+    "threshold_type": "total_born",
+    "conditions": [
+      "aplicado somente quando quantity estiver definido",
+      "aplicado somente quando off_txn_type efetivo for receive",
+      "o valor validado é quantity + total_piglets atual do animal",
+      "validado contra o threshold_references máximo configurado na granja (event_set: animal_parturition, type: total_born)"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_update"],
+    "validationFields": ["quantity"],
+    "error": "ATOF014",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "The sum of transferred piglets and total_piglets balance cannot exceed the maximum threshold for total born (animal_parturition).",
+    "event_set": "animal_parturition",
+    "threshold_type": "total_born",
+    "conditions": [
+      "aplicado somente quando quantity estiver definido",
+      "aplicado somente quando off_txn_type efetivo for receive",
+      "o saldo anterior é calculado subtraindo a quantity do próprio evento do total_piglets atual",
+      "o valor candidato é previousTotalPiglets + quantity do payload",
+      "validado contra o threshold_references máximo configurado na granja (event_set: animal_parturition, type: total_born)"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_register", "animal_transfer_off_update"],
+    "validationFields": ["date"],
+    "error": "ATOF015",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "Average piglet age from donations must be within the configured farm thresholds for offspring losses.",
+    "event_set": "animal_loss_off",
+    "threshold_rule": "offspring_age",
+    "threshold_type": "date",
+    "conditions": [
+      "aplicado somente quando date estiver definido",
+      "aplicado somente quando off_txn_type efetivo for donate",
+      "calculado como diferença em dias entre average_birth_date do animal e a data do evento",
+      "retorna falso se average_birth_date não estiver disponível",
+      "validado contra os threshold_references configurados na granja (event_set: animal_loss_off, threshold_rule: offspring_age)"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_register", "animal_transfer_off_update"],
+    "validationFields": ["average_off_age"],
+    "error": "ATOF016",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "Average piglet age from receptions must be within the configured farm thresholds for offspring losses.",
+    "event_set": "animal_loss_off",
+    "threshold_rule": "offspring_age",
+    "threshold_type": "date",
+    "conditions": [
+      "aplicado somente quando average_off_age estiver definido",
+      "aplicado somente quando off_txn_type efetivo for receive",
+      "validado contra os threshold_references configurados na granja (event_set: animal_loss_off, threshold_rule: offspring_age)"
+    ]
+  },
+  {
+    "event": ["animal_transfer_off_deletion"],
+    "validationFields": ["date"],
+    "error": "ATOF017",
+    "species": ["sow"],
+    "stages": ["lactating", "pregnant_and_lactating"],
+    "description": "Cannot delete animal offspring transfer if subsequent events exist.",
+    "conditions": [
+      "verifica se a data do evento a ser deletado é maior ou igual à data do last_event do animal",
+      "retorna falso se não houver last_event ou data do próprio evento"
+    ]
+  }
+]

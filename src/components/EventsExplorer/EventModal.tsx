@@ -8,7 +8,34 @@ interface EventModalProps {
   onClose: () => void;
 }
 
-type Tab = 'schema' | 'example';
+type Tab = 'schema' | 'example' | 'curl';
+
+// ── Convert Python dict literal → JSON string ──────────────────────────────
+// Handles True/False/None and enum values like EventType.ANIMAL_REGISTER
+function pythonToJson(code: string): string {
+  return code
+    .replace(/\bTrue\b/g, 'true')
+    .replace(/\bFalse\b/g, 'false')
+    .replace(/\bNone\b/g, 'null')
+    // Enum values: CapitalizedClass.UPPER_VALUE → "upper_value"
+    .replace(/\b[A-Z][a-zA-Z]*\.[A-Z][A-Z0-9_]*\b/g, (match) =>
+      `"${match.split('.')[1].toLowerCase()}"`,
+    );
+}
+
+function buildCurl(event: EventEntry): string {
+  const json = event.example
+    ? pythonToJson(event.example)
+        .replace(/^[ \t]*"created_at"\s*:.*\n?/gm, '')
+        .replace(/,(\s*[}\]])/g, '$1')
+        .replace(/'/g, "'\\''")
+    : '{}';
+  return `curl --request POST \\
+  --url https://sds-backend.agriness-qa.com/api/events \\
+  --header 'Content-Type: application/json' \\
+  --header 'apiKey: sua-api-key' \\
+  --data '${json}'`;
+}
 
 export default function EventModal({ event, onClose }: EventModalProps) {
   const [tab, setTab] = useState<Tab>(event.schema ? 'schema' : 'example');
@@ -61,6 +88,14 @@ export default function EventModal({ event, onClose }: EventModalProps) {
               Exemplo
             </button>
           )}
+          {event.example && (
+            <button
+              className={`${styles.modalTab} ${tab === 'curl' ? styles.modalTabActive : ''}`}
+              onClick={() => setTab('curl')}
+            >
+              cURL
+            </button>
+          )}
         </div>
 
         {/* ── Body ───────────────────────────────────────────── */}
@@ -70,6 +105,9 @@ export default function EventModal({ event, onClose }: EventModalProps) {
           )}
           {tab === 'example' && event.example && (
             <CodeBlock language="python">{event.example}</CodeBlock>
+          )}
+          {tab === 'curl' && event.example && (
+            <CodeBlock language="bash">{buildCurl(event)}</CodeBlock>
           )}
         </div>
 
