@@ -60,5 +60,18 @@
     "species": ["todas"],
     "stages": ["todos"],
     "description": "Cannot delete animal nurse mother if subsequent events exist."
+  },
+  {
+    "event": ["animal_nurse_mother_update"],
+    "validationFields": ["uuid"],
+    "error": "ANM007",
+    "species": ["todas"],
+    "stages": ["todos"],
+    "description": "Cannot update animal nurse mother.",
+    "conditions": [
+      "verifica se foram alterados campos imutáveis além de 'note'",
+      "retorna falso se o evento não for encontrado",
+      "apenas o campo 'note' pode ser modificado em um update"
+    ]
   }
 ]
